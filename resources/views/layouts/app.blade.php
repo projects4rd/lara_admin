@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -14,14 +14,14 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -33,7 +33,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @auth()
+                            @can('list-users')
+                                <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('users.index') }}">
+                                        😎 Users
+                                    </a>
+                                </li>
+                            @endcan
 
+                            @can('list-posts')
+                                <li class="nav-item {{ Request::is('posts*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('posts.index') }}">
+                                        🗒 Posts
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -49,9 +65,18 @@
                                 </li>
                             @endif
                         @else
+                            @can('view-roles')
+                                <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('roles.index') }}">
+                                        🔒 Roles
+                                    </a>
+                                </li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ auth()->user()->name }}
+                                    <span class="badge badge-warning">{{ auth()->user()->roles->first()->name }}</span>
+                                    <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -73,7 +98,12 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div id="flash-msg">
+                    @include('partials.flash-message')
+                </div>
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

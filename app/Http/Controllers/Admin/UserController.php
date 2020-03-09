@@ -7,6 +7,7 @@ use App\User;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -51,12 +52,12 @@ class UserController extends Controller
 
         if ($user = User::create($request->except('roles', 'permissions'))) {
             $this->syncPermissions($request, $user);
-            $alert = ['type' => 'success', 'message' => 'Succesfully created user'];
+            $alert = ['type' => 'success', 'message' => 'User has been created'];
         } else {
             $alert = ['type' => 'error', 'message' => 'Unable to create user'];
         }
 
-        return redirect()->rout('users.index')->with($alert['type'], $alert['message']);
+        return redirect()->route('users.index')->with($alert['type'], $alert['message']);
     }
 
     /**
@@ -99,6 +100,20 @@ class UserController extends Controller
             'email' => 'required|email|unique:users, email' . $id,
             'roles' => 'required|min:1'
         ]);
+
+        $user = User::findOrFail($id);
+
+        $user->fill($request->except('roles', 'permissions', 'password'));
+
+        if ($request->get('password')) {
+            $user->password = bcrypt($request->get('password'));
+        }
+
+        $this->syncPermissions($request, $user);
+
+        $user->save();
+        $alert = ['type' => 'success', 'message' => 'User has been updated'];
+        return redirect()->route('users.index')->with($alert['type'], $alert['message']);
     }
 
     /**
@@ -109,6 +124,34 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::user()->id == $id) {
+            $alert = ['type' => 'error', 'message' => 'Deletion of currently logged in user is not allowed'];
+            return redirect()->back()->with($alert['type'], $alert['message']);
+        }
+
+        if (User::findOrFail($id)->delete()) {
+            $alert = ['type' => 'success', 'message' => 'User has been deleted'];
+        } else {
+            $alert = ['type' => 'error', 'message' => 'Unable to delete user'];
+        }
+
+        return redirect()->back()->with($alert['type'], $alert['message']);
+    }
+
+    private function syncPermissions(Request $request, $user)
+    {
+        $roles = $request->get('roles', []);
+        $permissions = $request->get('permissions', []);
+
+        $roles = Role::find($roles);
+
+        if ($user->hasAllRoles($roles)) {
+            $user->permissions()->sync([]);
+        } else {
+            $user->permissions()->sync($permissions);
+        }
+
+        $user->syncRoles($roles);
+        return $user;
     }
 }
