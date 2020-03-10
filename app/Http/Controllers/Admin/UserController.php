@@ -40,7 +40,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'id');
-        return view('user.new', compact('roles'));
+        return view('user.add', compact('roles'));
     }
 
     /**
