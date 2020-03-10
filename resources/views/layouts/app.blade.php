@@ -42,13 +42,13 @@
                                 </li>
                             @endcan
 
-                            @can('list-posts')
+                            {{-- @can('list-posts')
                                 <li class="nav-item {{ Request::is('posts*') ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('posts.index') }}">
                                         🗒 Posts
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                         @endauth
                     </ul>
 
@@ -82,7 +82,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                       document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -100,7 +100,7 @@
         <main class="py-4">
             <div class="container">
                 <div id="flash-msg">
-                    @include('partials.flash-message')
+                    @include('shared.flash-message')
                 </div>
                 @yield('content')
             </div>

@@ -39,7 +39,7 @@
 
                     @can('edit-users')
                     <td class="text-center">
-                        @include('shared._actions', [
+                        @include('shared.actions', [
                             'entity' => 'users',
                             'id' => $item->id
                         ])

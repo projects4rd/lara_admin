@@ -5,12 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Role;
 use App\User;
 use App\Permission;
+use App\Authorizable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    use Authorizable;
+
+    protected $request;
+
+    public function __construct(Request $request) 
+    {
+        $this->request = $request;
+    }
+  
     /**
      * Display a listing of the resource.
      *
