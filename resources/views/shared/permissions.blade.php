@@ -6,24 +6,34 @@
             </a>
         </h4>
     </div>
-    <div id="dd-{{ isset($title) ? Str::slug($title) :  'permissionHeading' }}" class="card-collapse collapse {{ $closed ?? 'in' }}" role="tabcard" aria-labelledby="dd-{{ isset($title) ? str_slug($title) :  'permissionHeading' }}">
+    <div id="dd-{{ isset($title) ? Str::slug($title) :  'permissionHeading' }}" class="card-collapse collapse {{ $closed ?? 'in' }}" 
+        role="tabcard" 
+        aria-labelledby="dd-{{ isset($title) ? Str::slug($title) :  'permissionHeading' }}"
+    >
         <div class="card-body">
             <div class="row">
-                @foreach($permissions as $perm)
+                @foreach($permissions as $permission)
                     <?php
-                        $permFound = null;
+                        $permissionFound = null;
                         if( isset($role) ) {
-                            $permFound = $role->hasPermissionTo($perm->name);
+                            $permissionFound = $role->hasPermissionTo($permission->name);
                         }
                         if( isset($user)) {
-                            $permFound = $user->hasDirectPermission($perm->name);
+                            $permissionFound = $user->hasDirectPermission($permission->name);
                         }
                     ?>
 
                     <div class="col-md-3">
                         <div class="checkbox">
-                            <label class="{{ Str::contains($perm->name, 'delete') ? 'text-danger' : '' }}">
-                                {!! Form::checkbox("permissions[]", $perm->name, $permFound, isset($options) ? $options : []) !!} {{ $perm->name }}
+                            <label class="{{ Str::contains($permission->name, 'delete') ? 'text-danger' : '' }}">
+                                <input class="form-check-input" 
+                                    type="checkbox" 
+                                    name="permissions[]" 
+                                    value={{ $permission->name }} 
+                                    id="chk-permission-{{$permission->id}}"
+                                    checked=>{{ $permissionFound }}
+                                </input>
+                                {{ $permission->name }}
                             </label>
                         </div>
                     </div>

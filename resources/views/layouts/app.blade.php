@@ -37,7 +37,7 @@
                             @can('list-users')
                                 <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('users.index') }}">
-                                        😎 Users
+                                        <i class="fas fa-users"></i>Users
                                     </a>
                                 </li>
                             @endcan
@@ -68,7 +68,7 @@
                             @can('view-roles')
                                 <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('roles.index') }}">
-                                        🔒 Roles
+                                        <i class="fas fa-user-tag"></i>Roles
                                     </a>
                                 </li>
                             @endcan

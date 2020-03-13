@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*

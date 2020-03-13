@@ -1,32 +1,37 @@
 <!-- Name Form Input -->
 <div class="form-group @if ($errors->has('name')) has-error @endif">
     <label for="name">Name</label>
-    <input type="text" id="name" name="name" class="form-control" placeholder='Name'>
+    <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}" placeholder='Name'>
     @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
 </div>
 
 <!-- email Form Input -->
 <div class="form-group @if ($errors->has('email')) has-error @endif">
     <label for="email">Email</label>
-    <input type="text" id="email" name="name" class="form-control" placeholder='Email'>
+    <input type="text" id="email" name="name" class="form-control" value="{{ $user->email }}" placeholder='Email'>
     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
 </div>
 
 <!-- password Form Input -->
 <div class="form-group @if ($errors->has('password')) has-error @endif">
-    <label for="password">Email</label>
-    <input type="text" id="password" name="Password" class="form-control" placeholder='Password'>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}" required="" minlength="5" maxlength="255">
     @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
+</div>
+<div class="form-group">
+    <label for="password_confirmation">Password confirmation</label>
+    <input type="password" id="password_confirmation" name="password_confirmation" data-parsley-equalto="#password" class="form-control" value="{{ $user->password_confirmation }}" required="" minlength="5" maxlength="255">
 </div>
 
 <!-- Roles Form Input -->
 <div class="form-group @if ($errors->has('roles')) has-error @endif">
-    <label for="roles[]">Roles</label> 
-    <select multiple="multiple" id="roles[]" name="roles[]" class="form-control">        
-        dd($roles);
-        @foreach($roles as $role)
-          <option value="{{isset($user) ? $user->role->pluck('id')->toArray() : null}}">{{isset($user) ? $user->role->pluck('name') : null}}</option>
-        @endforeach
+    <label for="role">Roles</label> 
+    <select id="role" name="role" class="form-control" multiple="multiple" required="" placeholder="Choose a Role">
+        @if(count($roles))
+            @foreach($roles as $role)
+                <option value="{{ $role->id }}" {{ ($user->exists && $role->id === $user->roles->first()->id) ? "selected" : null }}>{{ $role->name }}</option>
+            @endforeach
+        @endif
     </select>
     @if ($errors->has('roles')) <p class="help-block">{{ $errors->first('roles') }}</p> @endif
 </div>

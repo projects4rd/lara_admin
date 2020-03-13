@@ -18,7 +18,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
-                        <form method="POST" action="{{ route( ['users.update',  $user->id ]) }}" accept-charset="UTF-8">
+                        <form method="POST" action="{{ route('users.update',  $user->id) }}" accept-charset="UTF-8">
                             @csrf
                             @method('PUT')
 
