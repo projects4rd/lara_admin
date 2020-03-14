@@ -40,10 +40,10 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
-        $roles = Role::all();
+        $roles = Role::pluck('name', 'id');
         $permissions = Permission::all();
 
-        return view('user.create', compact('user', 'roles', 'permissions'));
+        return view('user.create', compact('user', 'roles', 'permissions', ['createUser' => true]));
     }
 
     /**
@@ -95,6 +95,10 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'id');
         $permissions = Permission::all('name', 'id');
+        //dd($user->roles);
+        // foreach ($user->roles as $role) {
+        //     dd($role->id);
+        // }
 
         return view('user.edit', compact('user', 'roles', 'permissions'));
     }

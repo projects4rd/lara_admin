@@ -25,14 +25,13 @@
 
 <!-- Roles Form Input -->
 <div class="form-group @if ($errors->has('roles')) has-error @endif">
-    <label for="role">Roles</label> 
+    <label for="role">Roles</label>
     <select id="role" name="role" class="form-control" multiple="multiple" required="" placeholder="Choose a Role">
-        @if(count($roles))
-            @foreach($roles as $role)
-                <option value="{{ $role->id }}" {{ ($user->exists && $role->id === $user->roles->first()->id) ? "selected" : null }}>{{ $role->name }}</option>
-            @endforeach
-        @endif
+        @foreach($roles as $id => $name)
+            <option value="{{ $id }}" {{ $user->hasRole($name) ? "selected" : null }}>{{ $name }}</option>
+        @endforeach
     </select>
+
     @if ($errors->has('roles')) <p class="help-block">{{ $errors->first('roles') }}</p> @endif
 </div>
 
