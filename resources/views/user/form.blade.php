@@ -8,25 +8,25 @@
 <!-- email Form Input -->
 <div class="form-group @if ($errors->has('email')) has-error @endif">
     <label for="email">Email</label>
-    <input type="text" id="email" name="name" class="form-control" value="{{ $user->email }}" placeholder='Email'>
+    <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" placeholder='Email'>
     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
 </div>
 
 <!-- password Form Input -->
 <div class="form-group @if ($errors->has('password')) has-error @endif">
     <label for="password">Password</label>
-    <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}" required="" minlength="5" maxlength="255">
+    <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}"  minlength="5" maxlength="255">
     @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
 </div>
 <div class="form-group">
     <label for="password_confirmation">Password confirmation</label>
-    <input type="password" id="password_confirmation" name="password_confirmation" data-parsley-equalto="#password" class="form-control" value="{{ $user->password_confirmation }}" required="" minlength="5" maxlength="255">
+    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" value="{{ $user->password_confirmation }}"  minlength="5" maxlength="255">
 </div>
 
 <!-- Roles Form Input -->
 <div class="form-group @if ($errors->has('roles')) has-error @endif">
-    <label for="role">Roles</label>
-    <select id="role" name="role" class="form-control" multiple="multiple" required="" placeholder="Choose a Role">
+    <label for="roles">Roles</label>
+    <select id="roles" name="roles" class="form-control" multiple="multiple" required="" placeholder="Choose a Role">
         @foreach($roles as $id => $name)
             <option value="{{ $id }}" {{ $user->hasRole($name) ? "selected" : null }}>{{ $name }}</option>
         @endforeach

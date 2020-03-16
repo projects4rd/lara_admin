@@ -6,9 +6,12 @@ use App\Role;
 use App\User;
 use App\Permission;
 use App\Authorizable;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -95,10 +98,6 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'id');
         $permissions = Permission::all('name', 'id');
-        //dd($user->roles);
-        // foreach ($user->roles as $role) {
-        //     dd($role->id);
-        // }
 
         return view('user.edit', compact('user', 'roles', 'permissions'));
     }
@@ -110,11 +109,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update2(Request $request, $id)
     {
+        // dd($request);
         $this->validate($request, [
             'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:users, email' . $id,
+            'email' => 'required|email|unique:users, email,' . $id,
             'roles' => 'required|min:1'
         ]);
 
@@ -122,13 +122,43 @@ class UserController extends Controller
 
         $user->fill($request->except('roles', 'permissions', 'password'));
 
-        if ($request->get('password')) {
+        if ($request->get('password') === '') {
             $user->password = bcrypt($request->get('password'));
         }
 
         $this->syncPermissions($request, $user);
 
         $user->save();
+
+        $alert = ['type' => 'success', 'message' => __('User has been updated')];
+        return redirect()->route('users.index')->with($alert['type'], $alert['message']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
+        ]);
+
+
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input, array('password'));
+        }
+
+        $user = User::findOrFail($id);
+        $user->update($input);
+        //DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        $this->syncPermissions($request, $user);
+        //$user->assignRole($request->input('roles'));
+
+
         $alert = ['type' => 'success', 'message' => __('User has been updated')];
         return redirect()->route('users.index')->with($alert['type'], $alert['message']);
     }
