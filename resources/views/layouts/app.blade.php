@@ -65,7 +65,7 @@
                                 </li>
                             @endif
                         @else
-                            @can('view-roles')
+                            @can('list-roles')
                                 <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('roles.index') }}">
                                         <i class="fas fa-user-tag"></i>Roles

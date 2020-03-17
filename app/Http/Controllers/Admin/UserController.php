@@ -58,10 +58,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:users',
+            'name'     => 'bail|required|min:2',
+            'email'    => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'roles' => 'required|min:1'
+            'roles'    => 'required|min:1'
         ]);
 
         $request->merge(['password' => bcrypt($request->get('password'))]);
@@ -113,7 +113,7 @@ class UserController extends Controller
     {
         // dd($request);
         $this->validate($request, [
-            'name' => 'bail|required|min:2',
+            'name'  => 'bail|required|min:2',
             'email' => 'required|email|unique:users, email,' . $id,
             'roles' => 'required|min:1'
         ]);
@@ -122,7 +122,7 @@ class UserController extends Controller
 
         $user->fill($request->except('roles', 'permissions', 'password'));
 
-        if ($request->get('password') === '') {
+        if ($request->input('password') === '') {
             $user->password = bcrypt($request->get('password'));
         }
 
@@ -137,10 +137,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'name'     => 'bail|required|min:2',
+            'email'    => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles'    => 'required|min:1'
         ]);
 
 
@@ -153,11 +153,8 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->update($input);
-        //DB::table('model_has_roles')->where('model_id', $id)->delete();
-
+        
         $this->syncPermissions($request, $user);
-        //$user->assignRole($request->input('roles'));
-
 
         $alert = ['type' => 'success', 'message' => __('User has been updated')];
         return redirect()->route('users.index')->with($alert['type'], $alert['message']);

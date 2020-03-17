@@ -39,7 +39,7 @@
             <h3>Roles</h3>
         </div>
         <div class="col-md-7 page-action text-right">
-            @can('add-roles')
+            @can('create-roles')
                 <a href="#" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#roleModal"> <i class="glyphicon glyphicon-plus"></i> New</a>
             @endcan
         </div>

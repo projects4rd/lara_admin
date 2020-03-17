@@ -8,7 +8,7 @@
             <h3 class="modal-title">{{ $result->total() }} {{ Str::plural('User', $result->count()) }} </h3>
         </div>
         <div class="col-md-7 page-action text-right">
-            @can('add-users')
+            @can('create-users')
                 <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create</a>
             @endcan
         </div>
@@ -23,7 +23,7 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Created At</th>
-                @can('edit_users', 'delete_users')
+                @can('edit-users', 'delete-users')
                 <th class="text-center">Actions</th>
                 @endcan
             </tr>
