@@ -63,7 +63,7 @@ class UserController extends Controller
             'roles'    => 'required|min:1'
         ]);
 
-        $request->merge(['password' => bcrypt($request->get('password'))]);
+        $request->merge(['password' => Hash::make($request->input('password'))]);
 
         if ($user = User::create($request->except('roles', 'permissions'))) {
             $this->syncPermissions($request, $user);
