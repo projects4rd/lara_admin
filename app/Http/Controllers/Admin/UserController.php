@@ -8,7 +8,6 @@ use App\Permission;
 use App\Authorizable;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -123,7 +122,7 @@ class UserController extends Controller
         $user->fill($request->except('roles', 'permissions', 'password'));
 
         if ($request->input('password') === '') {
-            $user->password = bcrypt($request->get('password'));
+            $user->password = Hash::make($request->input('password'));
         }
 
         $this->syncPermissions($request, $user);
@@ -153,7 +152,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->update($input);
-        
+
         $this->syncPermissions($request, $user);
 
         $alert = ['type' => 'success', 'message' => __('User has been updated')];
