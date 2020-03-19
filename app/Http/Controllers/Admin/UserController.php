@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -92,9 +93,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
         $roles = Role::pluck('name', 'id');
         $permissions = Permission::all('name', 'id');
 
@@ -108,7 +108,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update2(Request $request, $id)
+    public function update2(Request $request, User $user)
     {
         // dd($request);
         $this->validate($request, [
@@ -116,8 +116,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users, email,' . $id,
             'roles' => 'required|min:1'
         ]);
-
-        $user = User::findOrFail($id);
 
         $user->fill($request->except('roles', 'permissions', 'password'));
 
@@ -133,24 +131,15 @@ class UserController extends Controller
         return redirect()->route('users.index')->with($alert['type'], $alert['message']);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $this->validate($request, [
-            'name'     => 'bail|required|min:2',
-            'email'    => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-            'roles'    => 'required|min:1'
-        ]);
-
-
-        $input = $request->all();
+        $input = $request->validated();
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));
         }
 
-        $user = User::findOrFail($id);
         $user->update($input);
 
         $this->syncPermissions($request, $user);
@@ -165,14 +154,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        if (Auth::user()->id == $id) {
+        if (Auth::user() == $user) {
             $alert = ['type' => 'error', 'message' => __('Deletion of currently logged in user is not allowed')];
             return redirect()->back()->with($alert['type'], $alert['message']);
         }
 
-        if (User::findOrFail($id)->delete()) {
+        if ($user->delete()) {
             $alert = ['type' => 'success', 'message' => __('User has been deleted')];
         } else {
             $alert = ['type' => 'error', 'message' => __('Unable to delete user')];
@@ -181,7 +170,7 @@ class UserController extends Controller
         return redirect()->back()->with($alert['type'], $alert['message']);
     }
 
-    private function syncPermissions(Request $request, $user)
+    private function syncPermissions(Request $request, User $user)
     {
         $roles = $request->get('roles', []);
         $permissions = $request->get('permissions', []);
