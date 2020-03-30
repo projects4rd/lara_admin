@@ -61,92 +61,86 @@
     </div>
 </div>
 
-<ul class="nav rd-nav" role="tablist">
-    <li class="nav-item rd-nav-item" data-rd-type="step" data-rd-state="current">
-        <a class="nav-link rd-link active" data-toggle="tab" href="#rd_create_user_tab_1" role="tab">
 
-            <div class="rd-nav-body">
-                <div class="rd-nav-number">
-                    1
-                </div>
-                <div class="rd-nav-label">
-                    <div class="rd-nav-label-title">
-                        Profile
+<div class="rd-portlet">
+
+    <ul class="nav rd-nav" role="tablist">
+        <li class="nav-item rd-nav-item">
+            <a class="nav-link rd-link active" data-toggle="tab" href="#rd_create_user_tab_1" role="tab">
+                <div class="rd-nav-body">
+                    <div class="rd-nav-number">
+                        1
                     </div>
-                    <div class="rd-nav-label-desc">
-                        User's Personal Information
-                    </div>
-                </div>
-            </div>
-
-        </a>
-    </li>
-
-    <li class="nav-item rd-nav-item" data-rd-type="step">
-        <a class="nav-link rd-link active" data-toggle="tab" href="#rd_create_user_tab_1" role="tab">
-
-            <div class="rd-nav-body">
-                <div class="rd-nav-number">
-                    2
-                </div>
-                <div class="rd-nav-label">
-                    <div class="rd-nav-label-title">
-                        Account
-                    </div>
-                    <div class="rd-nav-label-desc">
-                        User's Account & Settings
+                    <div class="rd-nav-label">
+                        <div class="rd-nav-label-title">
+                            Profile
+                        </div>
+                        <div class="rd-nav-label-desc">
+                            User's Personal Information
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </a>
-    </li>
-
-    <li class="nav-item rd-nav-item" data-rd-type="step">
-        <a class="nav-link rd-link active" data-toggle="tab" href="#rd_create_user_tab_1" role="tab">
-
-            <div class="rd-nav-body">
-                <div class="rd-nav-number">
-                    3
-                </div>
-                <div class="rd-nav-label">
-                    <div class="rd-nav-label-title">
-                        Address
+            </a>
+        </li>
+        <li class="nav-item rd-nav-item">
+            <a class="nav-link rd-link" data-toggle="tab" href="#rd_create_user_tab_2" role="tab">
+                <div class="rd-nav-body">
+                    <div class="rd-nav-number">
+                        2
                     </div>
-                    <div class="rd-nav-label-desc">
-                        User's Shipping Address
+                    <div class="rd-nav-label">
+                        <div class="rd-nav-label-title">
+                            Account
+                        </div>
+                        <div class="rd-nav-label-desc">
+                            User's Account &amp; Settings
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </a>
-    </li>
-
-    <li class="nav-item rd-nav-item" data-rd-type="step">
-        <a class="nav-link rd-link active" data-toggle="tab" href="#rd_create_user_tab_1" role="tab">
-
-            <div class="rd-nav-body">
-                <div class="rd-nav-number">
-                    3
-                </div>
-                <div class="rd-nav-label">
-                    <div class="rd-nav-label-title">
-                        Submission
+            </a>
+        </li>
+        <li class="nav-item rd-nav-item">
+            <a class="nav-link rd-link" data-toggle="tab" href="#rd_create_user_tab_3" role="tab">
+                <div class="rd-nav-body">
+                    <div class="rd-nav-number">
+                        3
                     </div>
-                    <div class="rd-nav-label-desc">
-                        Review and Submit
+                    <div class="rd-nav-label">
+                        <div class="rd-nav-label-title">
+                            Address
+                        </div>
+                        <div class="rd-nav-label-desc">
+                            User's Shipping Address
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
+        </li>
+        <li class="nav-item rd-nav-item">
+            <a class="nav-link rd-link" data-toggle="tab" href="#rd_create_user_tab_4" role="tab">
+                <div class="rd-nav-body">
+                    <div class="rd-nav-number">
+                        4
+                    </div>
+                    <div class="rd-nav-label">
+                        <div class="rd-nav-label-title">
+                            Submission
+                        </div>
+                        <div class="rd-nav-label-desc">
+                            Review and Submit
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
 
-        </a>
-    </li>
-</ul>
-<div class="container rd-portlet">
     <div class="row">
         <div class="col-lg-12">
+
             <form method="POST" action="{{ route('users.store') }}" class="rd-form rd-form-label-right">
                 @csrf
+
 
                 @include('user.form')
 
