@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="rd-subheader rd-grid__item" id="rd_subheader">
-    <div class="rd-container  rd-container--fluid ">
+<div class="rd-subheader" id="rd_subheader">
+
         <div class="rd-subheader__main">
 
             <h3 class="rd-subheader__title">
@@ -20,6 +20,7 @@
             </div>
 
         </div>
+        
         <div class="rd-subheader__toolbar text-right">
 
             <a href="{{ route('users.index') }}" class="btn btn-outline-primary btn-sm rd-btn-default rd-btn-bold">
@@ -58,13 +59,13 @@
             </div>
 
         </div>
-    </div>
+
 </div>
 
 
 <div class="rd-portlet">
 
-    <ul class="nav rd-nav" role="tablist">
+    <ul class="nav nav-fill rd-nav" role="tablist">
         <li class="nav-item rd-nav-item">
             <a class="nav-link rd-link active" data-toggle="tab" href="#rd_create_user_tab_1" role="tab">
                 <div class="rd-nav-body">
