@@ -16836,18 +16836,6 @@ body {
   border-radius: 4px;
 }
 
-.rd-heading {
-  font-size: 1.3rem;
-  font-weight: 500;
-  padding: 0;
-  margin: 1.75rem 0;
-  color: #48465b;
-}
-
-.rd-heading .rd-heading--md {
-  font-size: 1.4rem;
-}
-
 .rd-subheader {
   display: flex;
   justify-content: space-between;
@@ -16983,13 +16971,25 @@ body {
 }
 
 .rd-form {
-  width: 60%;
   padding: 4rem 0 5rem;
   margin: auto;
 }
 
 .rd-form.rd-form-label-right .form-group label:not(.rd-checkbox):not(.rd-radio):not(.rd-option) {
   text-align: right;
+}
+
+.rd-form .card {
+  border: none;
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05);
+}
+
+.rd-form .card .card-header {
+  border: none;
+  padding: 1rem;
+  margin: 0;
+  color: #48465b;
+  background-color: #fff;
 }
 
 .rd-btn-bold {
