@@ -16992,14 +16992,24 @@ body {
   background-color: #fff;
 }
 
-.rd-btn-bold {
+.btn.rd-btn-bold {
   font-weight: 600;
 }
 
-.rd-btn-default {
+.btn.rd-btn-default {
   background: 0 0;
   color: #74788d;
   border: 1px solid #e8ecfa;
+}
+
+.btn.rd-btn-brand {
+  color: #fff;
+  background-color: #5d78ff;
+  border-color: #5d78ff;
+}
+
+.btn.rd-btn-brand.btn.dropdown-toggle {
+  opacity: 0.6;
 }
 
 .rd-avatar {

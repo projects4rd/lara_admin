@@ -191,14 +191,26 @@ body {
     }
 }
 
-.rd-btn-bold {
-    font-weight: 600;
-}
+.btn {
+    &.rd-btn-bold {
+        font-weight: 600;
+    }
 
-.rd-btn-default {
-    background: 0 0;
-    color: #74788d;
-    border: 1px solid #e8ecfa;
+    &.rd-btn-default {
+        background: 0 0;
+        color: #74788d;
+        border: 1px solid #e8ecfa;
+    }
+
+    &.rd-btn-brand {
+        color: $white;
+        background-color: #5d78ff;
+        border-color: #5d78ff;
+
+        &.btn.dropdown-toggle {
+            opacity: .6;
+        }
+    }
 }
 
 .rd-avatar {

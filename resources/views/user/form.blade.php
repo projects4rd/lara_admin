@@ -3,12 +3,12 @@
         <div class="card">
 
             <div class="card-header">
-                <h5 class="col-xl-10 offset-xl-2 mb-0">User's Profile Details</h5>
+                <h5 class="col-xl-9 offset-xl-3 mb-0">User's Profile Details</h5>
             </div>
             
             <div class="card-body">
                 <div class="form-group row">
-                    <label class="col-xl-3 col-xl-3 col-form-label">Avatar</label>
+                    <label class="col-xl-4 col-xl-4 col-form-label">Avatar</label>
                     <div class="col-lg-9 col-xl-6">
                         <div class="rd-avatar rd-avatar--outline" id="rd_user_add_avatar">
                             <div class="rd-avatar__holder" style="background-image: url({{ $user->gravatar() }})">
@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="form-group row @if ($errors->has('first_name')) has-error @endif">
-                    <label class="col-xl-3 col-lg-3 col-form-label">First Name</label>
-                    <div class="col-lg-9 col-xl-9">
+                    <label class="col-xl-4 col-lg-4 col-form-label">First Name</label>
+                    <div class="col-lg-4 col-xl-4">
                         <input class="form-control" id="first_name" name="first_name" type="text"
                             value="{{ $user->first_name }}" aria-invalid="false">
                         @if ($errors->has('first_name')) <p class="help-block">{{ $errors->first('first_name') }}</p> @endif
@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="form-group row @if ($errors->has('last_name')) has-error @endif">
-                    <label class="col-xl-3 col-lg-3 col-form-label" for="last_name">Last Name</label>
-                    <div class="col-lg-9 col-xl-9">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="last_name">Last Name</label>
+                    <div class="col-lg-4 col-xl-4">
                         <input class="form-control" id="last_name" name="last_name" type="text" value="{{ $user->last_name }}"
                             aria-invalid="false">
                         @if ($errors->has('Last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="form-group row @if ($errors->has('email')) has-error @endif">
-                    <label class="col-xl-3 col-lg-3 col-form-label" for="email">Email</label>
-                    <div class="col-lg-9 col-xl-9">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="email">Email</label>
+                    <div class="col-lg-4 col-xl-4">
                         <div class="input-group">
                             <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-at"></i></span>
                             </div>
@@ -59,8 +59,8 @@
                 </div>
 
                 <div class="form-group row @if ($errors->has('password')) has-error @endif">
-                    <label class="col-xl-3 col-lg-3 col-form-label" for="password">Password</label>
-                    <div class="col-lg-9 col-xl-6">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="password">Password</label>
+                    <div class="col-lg-4 col-xl-4">
                         <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}"
                             placeholder="Password">
                         @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
@@ -68,8 +68,8 @@
                 </div>
 
                 <div class="form-group form-group-last row">
-                    <label class="col-xl-3 col-lg-3 col-form-label" for="password_confirmation">Confirm Password</label>
-                    <div class="col-lg-9 col-xl-6">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="password_confirmation">Confirm Password</label>
+                    <div class="col-lg-4 col-xl-4">
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
                             value="{{ $user->password_confirmation }}" placeholder="Confirm password">
                         @if ($errors->has('password_confirmation')) <p class="help-block">
@@ -79,8 +79,8 @@
                 </div>
 
                 <div class="form-group row @if ($errors->has('roles')) has-error @endif">
-                    <label class="col-xl-3 col-lg-3 col-form-label" for="roles">Roles</label>
-                    <div class="col-lg-9 col-xl-6">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="roles">Roles</label>
+                    <div class="col-lg-4 col-xl-4">
                         <select id="roles" name="roles" class="form-control" multiple="multiple" required=""
                             placeholder="Choose a Role">
                             @foreach($roles as $id => $name)

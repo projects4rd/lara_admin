@@ -16,22 +16,20 @@
 
             <div class="rd-subheader__group" id="rd_subheader_search">
                 <span class="rd-subheader__desc" id="rd_subheader_total">
-                    Enter user details and submit </span>
+                    Enter user details and save </span>
             </div>
 
         </div>
         
         <div class="rd-subheader__toolbar text-right">
 
-            <a href="{{ route('users.index') }}" class="btn btn-outline-primary btn-sm rd-btn-default rd-btn-bold">
-                <i class="fa fa-arrow-left"></i> Back
+            <a href="{{ route('users.index') }}" class="btn rd-btn-default rd-btn-bold btn-sm">
+                Back
             </a>
 
             <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-sm rd-btn-default">
-
-                    Save </button>
-                <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
+                <button type="button" class="btn rd-btn-brand rd-btn-bold btn-sm">Save</button>
+                <button type="button" class="btn rd-btn-brand rd-btn-bold btn-sm dropdown-toggle dropdown-toggle-split"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -82,6 +80,7 @@
                 </div>
             </a>
         </li>
+
         <li class="nav-item rd-nav-item">
             <a class="nav-link rd-link" data-toggle="tab" href="#rd_create_user_tab_2" role="tab">
                 <div class="rd-nav-body">
@@ -99,6 +98,7 @@
                 </div>
             </a>
         </li>
+
         <li class="nav-item rd-nav-item">
             <a class="nav-link rd-link" data-toggle="tab" href="#rd_create_user_tab_3" role="tab">
                 <div class="rd-nav-body">
@@ -116,6 +116,7 @@
                 </div>
             </a>
         </li>
+
         <li class="nav-item rd-nav-item">
             <a class="nav-link rd-link" data-toggle="tab" href="#rd_create_user_tab_4" role="tab">
                 <div class="rd-nav-body">
@@ -141,10 +142,8 @@
             <form method="POST" action="{{ route('users.store') }}" class="rd-form rd-form-label-right">
                 @csrf
 
-
                 @include('user.form')
 
-                <!-- Submit Form Button -->
                 <input type="submit" value="Create" class="btn btn-primary">
             </form>
         </div>
