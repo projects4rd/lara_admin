@@ -4,7 +4,13 @@
 
 @section('content')
 
-<div class="rd-subheader" id="rd_subheader">
+
+<div id="flash-msg">
+    @include('shared.flash-message')
+</div>
+
+<div class="rd-portlet">
+    <div class="rd-subheader" id="rd_subheader">
 
         <div class="rd-subheader__main">
 
@@ -20,7 +26,7 @@
             </div>
 
         </div>
-        
+
         <div class="rd-subheader__toolbar text-right">
 
             <a href="{{ route('users.index') }}" class="btn rd-btn-default rd-btn-bold btn-sm">
@@ -58,9 +64,7 @@
 
         </div>
 
-</div>
-
-<div class="rd-portlet">
+    </div>
 
     <ul class="nav nav-fill rd-nav" role="tablist">
         <li class="nav-item rd-nav-item">

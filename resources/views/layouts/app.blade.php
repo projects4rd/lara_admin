@@ -102,13 +102,62 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            <div class="container-fluid">
-                <div id="flash-msg">
-                    @include('shared.flash-message')
+        <main class="py-4 container-fluid d-flex">
+
+            <div class="rd-sidebar" id="rd-sidebar">
+                @auth()
+                <div class="sidebar-header text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/200px-User_icon-cp.svg.png"
+                        alt="">
+                    <h5>{{ auth()->user()->name }}</h5>
                 </div>
-                @yield('content')
+
+                <div class="sidebar-menu">
+                    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                        <div class="sidebar-sticky">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">
+                                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                                    </a>
+                                </li>
+
+                                @can('list-users')
+                                <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('users.index') }}">
+                                        <i class="fas fa-users"></i>Users
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('list-roles')
+                                <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('roles.index') }}">
+                                        <i class="fas fa-user-tag"></i>Roles
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('list-permissions')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fas fa-user-lock"></i> Permissions
+                                    </a>
+                                </li>
+                                @endcan
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fas fa-cogs"></i> Settings
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                @endauth
             </div>
+
+            @yield('content')
+
         </main>
     </div>
 </body>

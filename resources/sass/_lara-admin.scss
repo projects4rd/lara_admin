@@ -9,12 +9,24 @@ $white: #fff;
 $blue: #5d78ff;
 $title-color: #434349;
 
-
 body {
     font-family: $font-family-sans-serif;
     line-height: 1.5;
     font-size: 13px !important;
     font-weight: 300;
+}
+
+.rd-sidebar {
+    min-width: 200px;
+    .sidebar-header {
+        margin-bottom: 2rem;
+        img {
+            width: 40%;
+            height: 20%;
+            border: 4px solid $white;
+            border-radius: 50%;
+        }
+    }
 }
 
 .rd-portlet {
@@ -32,7 +44,7 @@ body {
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: wrap;
-    background-color: $white;;
+    background-color: $white;
 
     min-height: 54px;
     padding: 0 25px;
@@ -80,7 +92,6 @@ body {
             font-weight: 500;
             color: #959cb6;
         }
-
     }
     .rd-subheader__toolbar {
         display: flex;
@@ -88,7 +99,6 @@ body {
         align-items: center;
         padding: 0;
     }
-
 }
 
 .rd-nav {
@@ -100,13 +110,13 @@ body {
         align-items: flex-end;
         /*
             1/4  - 4 columns per row
-            5px - spacing between columns 
+            5px - spacing between columns
         */
-        flex: 0 0 calc(1/4 * 100% - (1 - 1/4) * 5px);
+        flex: 0 0 calc(1 / 4 * 100% - (1 - 1 / 4) * 5px);
         //width: calc(1/4 * 100% - (1 - 1/4) * 5px);
 
         border-radius: 0.5rem 0.5rem 0 0;
-        
+
         .rd-link {
             width: 100%;
             height: 100%;
@@ -114,11 +124,11 @@ body {
             .rd-nav-body {
                 display: flex;
                 flex: 1;
-                align-items: center;                
+                align-items: center;
                 padding: 1rem 1.5rem;
-                
+
                 .rd-nav-number {
-                    display: flex;                           
+                    display: flex;
                     flex: 0 0 2.75rem;
                     align-items: center;
                     justify-content: center;
@@ -141,16 +151,16 @@ body {
                     .rd-nav-label-title {
                         font-size: 1rem;
                         font-weight: 600;
-                        color: $blue;                        
+                        color: $blue;
                     }
-                    
+
                     .rd-nav-label-desc {
-                        color: #959cb6;                        
+                        color: #959cb6;
                     }
                 }
             }
         }
-                
+
         .rd-link.active {
             background-color: $white;
             .rd-nav-body {
@@ -175,12 +185,12 @@ body {
         .form-group
         label:not(.rd-checkbox):not(.rd-radio):not(.rd-option) {
         text-align: right;
-    }   
-    
+    }
+
     .card {
         border: none;
         box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05);
-    
+
         .card-header {
             border: none;
             padding: 1rem;
@@ -208,7 +218,7 @@ body {
         border-color: #5d78ff;
 
         &.btn.dropdown-toggle {
-            opacity: .6;
+            opacity: 0.6;
         }
     }
 }
@@ -286,11 +296,11 @@ body {
 }
 
 @media (max-width: 1025px) {
-        .rd-nav {
+    .rd-nav {
         .rd-nav-item {
             flex: auto;
-            flex: 0 0 calc(50% - .25rem);
-            width: calc(50% - .25rem);
+            flex: 0 0 calc(50% - 0.25rem);
+            width: calc(50% - 0.25rem);
             position: relative;
             width: 100%;
         }
