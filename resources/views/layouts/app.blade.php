@@ -32,28 +32,62 @@
           <div class="collapse navbar-collapse" id="myNavbar">
             <div class="container-fluid">
               <div class="row">
+
                 <!-- sidebar -->
                 @auth
                 <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-                  <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">CodeAndCreate</a>
+                  <a href="{{ url('/') }}" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">
+                    {{ config('app.name', 'Laravel') }}
+                  </a>
+
                   <div class="bottom-border pb-3">
-                    <img src="{{ asset('images/admin.jpg') }}" width="50" class="rounded-circle mr-3">
-                    <a href="#" class="text-white">Helen Smith</a>
+                    <img src="{{ asset('images/default-avatar.svg') }}" width="50" class="rounded-circle mr-3">
+                    <a href="#" class="text-white">{{ auth()->user()->name }}</a>
                   </div>
+
                   <ul class="navbar-nav flex-column mt-4">
 
-                    <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white p-3 mb-2 current">
+                            <i class="fas fa-home text-light fa-lg mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
 
                     @can('list-users')
-                        <li class="nav-item  {{ Request::is('users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Users</a></li>
+                        <li class="nav-item  {{ Request::is('users*') ? 'active' : '' }}">
+                            <a href="{{ route('users.index') }}" class="nav-link text-white p-3 mb-2 sidebar-link">
+                                <i class="fas fa-users text-light fa-lg mr-3"></i>
+                                Users
+                            </a>
+                        </li>
                     @endcan
+
                     @can('list-roles')
-                        <li class="nav-item"><a href="{{ route('roles.index') }}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-envelope text-light fa-lg mr-3"></i>Roles</a></li>
+                        <li class="nav-item">
+                            <a href="{{ route('roles.index') }}" class="nav-link text-white p-3 mb-2 sidebar-link">
+                                <i class="fas fa-user-tag text-light fa-lg mr-3"></i>
+                                Roles
+                            </a>
+                        </li>
                     @endcan
+
                     @can('list-permissions')
-                        <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-shopping-cart text-light fa-lg mr-3"></i>Permissions</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                                <i class="fas fa-user-lock text-light fa-lg mr-3"></i>
+                                Permissions
+                            </a>
+                        </li>
                     @endcan
-                    <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-wrench text-light fa-lg mr-3"></i>Settings</a></li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <i class="fas fa-wrench text-light fa-lg mr-3"></i>
+                            Settings
+                        </a>
+                    </li>
+
                   </ul>
                 </div>
                 @endauth
@@ -65,55 +99,43 @@
                     <div class="col-md-4">
                       <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
                     </div>
-                    <div class="col-md-5">
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                            @endif
-                            @else
-                            @can('list-roles')
-                            <li class="nav-item {{ Request::is('roles*') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('roles.index') }}">
-                                    <i class="fas fa-user-tag"></i>Roles
-                                </a>
-                            </li>
-                            @endcan
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ auth()->user()->name }}
-                                    <span class="badge badge-warning">{{ auth()->user()->roles->first()->name }}</span>
-                                    <span class="caret"></span>
-                                </a>
-    
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-8">
                       <ul class="navbar-nav">
-                        <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-comments text-muted fa-lg"></i></a></li>
-                        <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-bell text-muted fa-lg"></i></a></li>
-                        <li class="nav-item ml-md-auto"><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li>
+
+                        <!-- Authentication Links -->
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+
+                        @else
+                        <li class="nav-item ml-md-auto dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ auth()->user()->name }}
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <ul>
+                                <li class="dropdown-item"> 
+                                    Role {{ auth()->user()->roles->first()->name }}
+                                </li>
+                                <li class="dropdown-item"> 
+                                    <a class="nav-link" href="#"data-toggle="modal" data-target="#sign-out">
+                                        <i class="fas fa-sign-out-alt text-danger fa-lg"></i>
+                                        Sign out
+                                    </a>
+                                </li>
+                            </ul>
+                            </div>
+                        </li>
+                        @endguest
                       </ul>
                     </div>
                   </div>
@@ -138,18 +160,28 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Logout</button>
+
+                <a class="btn btn-danger" href="{{ route('logout') }}" data-dismiss="modal" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                    style="display: none;">
+                    @csrf
+                </form>
               </div>
             </div>
           </div>
         </div>
         <!-- end of modal -->
     
-        <main class="py-4 container-fluid d-flex">
-
-
-
-            @yield('content')
+        <main class="container-fluid">
+            <div class="row">
+                <div class="col-xl-10 col-lg-9 col-md-8 mt-md-5 ml-auto">
+                    @yield('content')
+                </div>
+            </div>
 
         </main>
     </div>
