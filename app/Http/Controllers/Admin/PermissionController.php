@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Authorizable;
+use App\Permission;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class PermissionController extends Controller
 {
+    use Authorizable;
+
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $permissions = Permission::all();
+
+        return view('permisson.index', compact('permissions'));
     }
 
     /**
