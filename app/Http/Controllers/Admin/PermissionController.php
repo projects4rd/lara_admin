@@ -18,7 +18,7 @@ class PermissionController extends Controller
     {
         $this->request = $request;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +28,7 @@ class PermissionController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('permisson.index', compact('permissions'));
+        return view('admin.permisson.index', compact('permissions'));
     }
 
     /**

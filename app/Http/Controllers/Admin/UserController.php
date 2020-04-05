@@ -32,7 +32,7 @@ class UserController extends Controller
     public function index()
     {
         $result = User::latest()->paginate();
-        return view('user.index', compact('result'));
+        return view('admin.user.index', compact('result'));
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'id');
         $permissions = Permission::all();
 
-        return view('user.create', compact('user', 'roles', 'permissions', ['createUser' => true]));
+        return view('admin.user.create', compact('user', 'roles', 'permissions', ['createUser' => true]));
     }
 
     /**
@@ -73,7 +73,7 @@ class UserController extends Controller
             $alert = ['type' => 'error', 'message' => __('Unable to create user')];
         }
 
-        return redirect()->route('users.index')->with($alert['type'], $alert['message']);
+        return redirect()->route('admin.users.index')->with($alert['type'], $alert['message']);
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'id');
         $permissions = Permission::all('name', 'id');
 
-        return view('user.edit', compact('user', 'roles', 'permissions'));
+        return view('admin.user.edit', compact('user', 'roles', 'permissions'));
     }
 
     /**
@@ -128,7 +128,7 @@ class UserController extends Controller
         $user->save();
 
         $alert = ['type' => 'success', 'message' => __('User has been updated')];
-        return redirect()->route('users.index')->with($alert['type'], $alert['message']);
+        return redirect()->route('admin.users.index')->with($alert['type'], $alert['message']);
     }
 
     public function update(UserUpdateRequest $request, User $user)
@@ -145,7 +145,7 @@ class UserController extends Controller
         $this->syncPermissions($request, $user);
 
         $alert = ['type' => 'success', 'message' => __('User has been updated')];
-        return redirect()->route('users.index')->with($alert['type'], $alert['message']);
+        return redirect()->route('admin.users.index')->with($alert['type'], $alert['message']);
     }
 
     /**

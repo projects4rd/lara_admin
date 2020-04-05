@@ -18,7 +18,7 @@ class RoleController extends Controller
     {
         $this->request = $request;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +29,7 @@ class RoleController extends Controller
         $roles = Role::all();
         $permissions = Permission::all();
 
-        return view('role.index', compact('roles', 'permissions'));
+        return view('admin.role.index', compact('roles', 'permissions'));
     }
 
     /**
@@ -42,7 +42,7 @@ class RoleController extends Controller
     {
         $this->validate($request, ['name' => 'required|unique:roles']);
 
-        if( Role::create($request->only('name')) ) {
+        if (Role::create($request->only('name'))) {
             $alert = ['type' => 'success', 'message' => __('Role has been created')];
         } else {
             $alert = ['type' => 'error', 'message' => __('Unable to create role')];
@@ -60,9 +60,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($role = Role::findOrFail($id)) {
+        if ($role = Role::findOrFail($id)) {
             // admin role has everything
-            if($role->name === 'super-admin') {
+            if ($role->name === 'super-admin') {
                 $role->syncPermissions(Permission::all());
                 return redirect()->route('roles.index');
             }
@@ -73,9 +73,9 @@ class RoleController extends Controller
 
             $alert = ['type' => 'success', 'message' => $role->name . __(' permissions has been updated.')];
         } else {
-            $alert = ['type' => 'error', 'message' => __('Role with id '. $id .' note found.')];
+            $alert = ['type' => 'error', 'message' => __('Role with id ' . $id . ' note found.')];
         }
 
-        return redirect()->route('roles.index')->with($alert['type'], $alert['message']);
+        return redirect()->route('admin.roles.index')->with($alert['type'], $alert['message']);
     }
 }

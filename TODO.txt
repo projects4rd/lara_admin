@@ -1,0 +1,70 @@
+* Algemeen
+    - Invoeren tdd unittests
+    - Maken gerskin stories
+    - Useradmin als package
+
+* Processen
+    - Crud van users en contacts als 1 Proces
+    - Crud van users en roles
+    - Crud van roles en permissions
+
+* Pages (af)maken
+    - dasboard page
+    - users
+        - add, edit, soft delete, perm delete
+        - user acount info
+            - user name
+            - email address
+            - password + password confirmation
+            - slug
+        - user contact info + rollen
+            - avatar
+            - first name
+            - last name
+            - email address
+            - telefoon
+            - website
+            - rollen
+        - addressen
+            - contact
+            - bill to
+            - ship to
+        - persmisson per user
+    - roles
+        - add, edit, soft delete, perm delete
+        - persmisson per role
+    - permissions
+        - add, edit, soft delete, perm delete
+    - settings
+        - add, edit, soft delete, perm delete
+    - welcome page
+    - login page
+
+* Standaard componenten
+    - Bootstrap tables vervangen door datatables
+    - Select boxes vervangen door select2 boxes
+    - Confirm boxes vervangen door ...
+    - Alerts vervangen door Toaster meldingen
+
+* Styling
+    - light of dark styling?
+    - Layout template split tussen app en admin
+    - Fix header bar in login scherm
+    - scss beter groeperen en splitsen
+    - Useradmin als een dropdown
+
+* Images
+    - Image lader via slepen
+    - Intervention image package
+
+* Vertaal systeem
+    - via Laravel
+    - via database
+
+* settings
+    - via Laravel
+    - via database
+
+* Restfull Api ontwikkeling
+    - Swagger implementation
+

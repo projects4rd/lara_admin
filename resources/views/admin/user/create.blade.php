@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Create')
 
@@ -146,7 +146,7 @@
             <form method="POST" action="{{ route('users.store') }}" class="rd-form rd-form-label-right">
                 @csrf
 
-                @include('user.form')
+                @include('admin.user.form')
 
                 <input type="submit" value="Create" class="btn btn-primary">
             </form>
