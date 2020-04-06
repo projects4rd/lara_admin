@@ -52,72 +52,48 @@
                             <ul class="navbar-nav flex-column mt-4">
 
                                 <li class="nav-item">
-                                    <a href="{{ route('dashboard') }}" class="nav-link text-white p-3 mb-2 current">
+                                    <a href="{{ route('dashboard') }}" class="nav-link text-white p-3 mb-2">
                                         <i class="fas fa-home text-light fa-lg mr-3"></i>
                                         Dashboard
                                     </a>
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white p-3 mb-2 sidebar-link"
+                                    <a class="nav-link dropdown-toggle text-white p-3 sidebar-link"
                                         data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                        aria-expanded="false"><i class="fas fa-user-cog fa-lg"></i> Admin</a>
+                                        aria-expanded="false">
+                                        <i class="fas fa-users-cog  fa-lg mr-3"></i>
+                                        Admin
+                                    </a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('users.index') }}" class="nav-link sidebar-sublink">
-                                            <i class="fas fa-users text-dark fa-lg mr-3"></i>
+                                        @can('list-users')
+                                        <a href="{{ route('users.index') }}" class="nav-link sidebar-link">
+                                            <i class="fas fa-users fa-lg mr-3"></i>
                                             Users
                                         </a>
-                                        <a href="{{ route('roles.index') }}" class="nav-link p-3 mb-2 sidebar-link">
-                                            <i class="fas fa-user-tag text-dark fa-lg mr-3"></i>
+                                        @endcan
+
+                                        @can('list-roles')
+                                        <a href="{{ route('roles.index') }}" class="nav-link sidebar-link">
+                                            <i class="fas fa-user-tag fa-lg mr-3"></i>
                                             Roles
                                         </a>
-                                        <a href="#" class="nav-link p-3 mb-2 sidebar-link">
-                                            <i class="fas fa-user-lock text-dark fa-lg mr-3"></i>
+                                        @endcan
+
+                                        @can('list-permissions')
+                                        <a href="#" class="nav-link sidebar-link">
+                                            <i class="fas fa-user-lock fa-lg mr-3"></i>
                                             Permissions
                                         </a>
+                                        @endcan
+
                                         <div class="dropdown-divider"></div>
-                                        <a href="#" class="nav-link p-3 mb-2 sidebar-link">
-                                            <i class="fas fa-wrench text-dark fa-lg mr-3"></i>
+
+                                        <a href="#" class="nav-link sidebar-link">
+                                            <i class="fas fa-wrench fa-lg mr-3"></i>
                                             Settings
                                         </a>
                                     </div>
-                                </li>
-
-
-                                @can('list-users')
-                                <li class="nav-item  {{ Request::is('users*') ? 'active' : '' }}">
-                                    <a href="{{ route('users.index') }}"
-                                        class="nav-link text-white p-3 mb-2 sidebar-link">
-                                        <i class="fas fa-users text-light fa-lg mr-3"></i>
-                                        Users
-                                    </a>
-                                </li>
-                                @endcan
-
-                                @can('list-roles')
-                                <li class="nav-item">
-                                    <a href="{{ route('roles.index') }}"
-                                        class="nav-link text-white p-3 mb-2 sidebar-link">
-                                        <i class="fas fa-user-tag text-light fa-lg mr-3"></i>
-                                        Roles
-                                    </a>
-                                </li>
-                                @endcan
-
-                                @can('list-permissions')
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
-                                        <i class="fas fa-user-lock text-light fa-lg mr-3"></i>
-                                        Permissions
-                                    </a>
-                                </li>
-                                @endcan
-
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
-                                        <i class="fas fa-wrench text-light fa-lg mr-3"></i>
-                                        Settings
-                                    </a>
                                 </li>
 
                             </ul>

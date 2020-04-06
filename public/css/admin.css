@@ -26,16 +26,7 @@
 
 .sidebar-link:hover {
   background-color: #444;
-  border-radius: 5px;
-}
-
-.dropdown-menu .sidebar-sublink {
-  color: #fff;
-}
-
-.dropdown-menu .sidebar-sublink:hover {
-  color: #fff;
-  background-color: #444;
+  color: #fff !important;
 }
 
 .current {

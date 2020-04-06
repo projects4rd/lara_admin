@@ -37,16 +37,7 @@ body {
 
 .sidebar-link:hover {
     background-color: #444;
-    border-radius: 5px;
-}
-
-.dropdown-menu .sidebar-sublink {
-    color: $white;
-}
-
-.dropdown-menu .sidebar-sublink:hover {
-    color: $white;
-    background-color: #444;
+    color: $white !important;
 }
 
 .current {
