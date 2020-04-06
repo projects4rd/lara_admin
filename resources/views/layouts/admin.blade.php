@@ -61,7 +61,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-white p-3 mb-2 sidebar-link"
                                         data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                        aria-expanded="false">Admin</a>
+                                        aria-expanded="false"><i class="fas fa-user-cog fa-lg"></i> Admin</a>
                                     <div class="dropdown-menu">
                                         <a href="{{ route('users.index') }}" class="nav-link sidebar-sublink">
                                             <i class="fas fa-users text-dark fa-lg mr-3"></i>
