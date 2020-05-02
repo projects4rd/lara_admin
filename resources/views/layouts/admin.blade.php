@@ -35,19 +35,19 @@
 
                 <div class="sidebar-header">
                     <a href="#" class="navbar-brand d-block mx-auto text-center py-3 mb-4 bottom-border">
-                        Lara-admin
+                        {{ config('app.name', 'Lara Admin') }}
                     </a>
                 </div>
 
                 <div class="bottom-border pb-3">
                     <img src="images/default-avatar.png" width="50" class="rounded-circle mr-3">
-                    <a href="#" class="text-white">Administrator</a>
+                    <a href="#" class="text-white">{{ auth()->user()->name }}</a>
                 </div>
 
                 <ul class="list-unstyled mt-4">
 
                     <li class="active">
-                        <a href="#">
+                        <a href="{{ route('dashboard') }}">
                             <i class="fas fa-home fa-lg mr-3"></i>
                             Dashboard
                         </a>
@@ -59,24 +59,33 @@
                             Admin
                         </a>
                         <ul class="collapse list-unstyled" id="adminSubmenu">
+                            @can('list-users')
                             <li>
-                                <a href="#">
+                                <a href="{{ route('users.index') }}">
                                     <i class="fas fa-users fa-lg mr-3"></i>
                                     Users
                                 </a>
                             </li>
+                            @endcan
+
+                            @can('list-roles')
                             <li>
-                                <a href="#">
+                                <a href="{{ route('roles.index') }}">
                                     <i class="fas fa-user-tag fa-lg mr-3"></i>
                                     Roles
                                 </a>
                             </li>
+                            @endcan
+
+                            @can('list-permissions')
                             <li>
                                 <a href="#">
                                     <i class="fas fa-user-lock fa-lg mr-3"></i>
                                     Permissions
                                 </a>
                             </li>
+                            @endcan
+
                             <li>
                                 <a href="#">
                                     <i class="fas fa-wrench fa-lg mr-3"></i>
@@ -124,25 +133,29 @@
                                 <a class="nav-link" href="#">Page</a>
                             </li>
 
+                            @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
 
+                            @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Register</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
+                            @endif
 
+                            @else
                             <li class="nav-item ml-md-auto dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Administrator
+                                    {{ auth()->user()->name }}
                                     <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <ul>
                                         <li class="dropdown-item">
-                                            Role Admin
+                                            Role {{ auth()->user()->roles->first()->name }}
                                         </li>
                                         <li class="dropdown-item">
                                             <a class="nav-link" href="#" data-toggle="modal" data-target="#sign-out">
@@ -153,6 +166,7 @@
                                     </ul>
                                 </div>
                             </li>
+                            @endguest
                         </ul>
                     </div>
                 </div>
