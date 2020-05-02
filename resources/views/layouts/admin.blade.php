@@ -25,178 +25,179 @@
 <body>
     <div id="app">
 
-        <!-- navbar -->
-        <nav class="navbar navbar-expand-md navbar-light">
-            <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse"
-                data-target="#myNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="wrapper">
+
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div id="dismiss">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+
+                <div class="sidebar-header">
+                    <a href="#" class="navbar-brand d-block mx-auto text-center py-3 mb-4 bottom-border">
+                        Lara-admin
+                    </a>
+                </div>
+
+                <div class="bottom-border pb-3">
+                    <img src="images/default-avatar.png" width="50" class="rounded-circle mr-3">
+                    <a href="#" class="text-white">Administrator</a>
+                </div>
+
+                <ul class="list-unstyled mt-4">
+
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-home fa-lg mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-users-cog fa-lg mr-3"></i>
+                            Admin
+                        </a>
+                        <ul class="collapse list-unstyled" id="adminSubmenu">
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-users fa-lg mr-3"></i>
+                                    Users
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-user-tag fa-lg mr-3"></i>
+                                    Roles
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-user-lock fa-lg mr-3"></i>
+                                    Permissions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-wrench fa-lg mr-3"></i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+                    <li>
+                        <a class="nav-link download" href="#" data-toggle="modal" data-target="#sign-out">
+                            <i class="fas fa-sign-out-alt fa-lg"></i>
+                            Sign out
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Navbar  -->
+            <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <div class="row">
 
-                        <!-- sidebar -->
-                        @auth
-                        <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-                            <a href="{{ url('/') }}"
-                                class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">
-                                {{ config('app.name', 'Laravel') }}
-                            </a>
+                    <button type="button" id="sidebarCollapse" class="btn btn-collapse rounded-circle">
+                        <i class="fas fa-align-left"></i>
+                    </button>
 
-                            <div class="bottom-border pb-3">
-                                <img src="{{ asset('images/default-avatar.png') }}" width="50"
-                                    class="rounded-circle mr-3">
-                                <a href="#" class="text-white">{{ auth()->user()->name }}</a>
-                            </div>
+                    <div class="ml-2">
+                        <h4 class="text-uppercase mb-0">Dashboard</h4>
+                    </div>
 
-                            <ul class="navbar-nav flex-column mt-4">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
 
-                                <li class="nav-item">
-                                    <a href="{{ route('dashboard') }}" class="nav-link text-white p-3 mb-2">
-                                        <i class="fas fa-home text-light fa-lg mr-3"></i>
-                                        Dashboard
-                                    </a>
-                                </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white p-3 sidebar-link"
-                                        data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="fas fa-users-cog  fa-lg mr-3"></i>
-                                        Admin
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        @can('list-users')
-                                        <a href="{{ route('users.index') }}" class="nav-link sidebar-link">
-                                            <i class="fas fa-users fa-lg mr-3"></i>
-                                            Users
-                                        </a>
-                                        @endcan
 
-                                        @can('list-roles')
-                                        <a href="{{ route('roles.index') }}" class="nav-link sidebar-link">
-                                            <i class="fas fa-user-tag fa-lg mr-3"></i>
-                                            Roles
-                                        </a>
-                                        @endcan
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
 
-                                        @can('list-permissions')
-                                        <a href="#" class="nav-link sidebar-link">
-                                            <i class="fas fa-user-lock fa-lg mr-3"></i>
-                                            Permissions
-                                        </a>
-                                        @endcan
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
 
-                                        <div class="dropdown-divider"></div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Login</a>
+                            </li>
 
-                                        <a href="#" class="nav-link sidebar-link">
-                                            <i class="fas fa-wrench fa-lg mr-3"></i>
-                                            Settings
-                                        </a>
-                                    </div>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Register</a>
+                            </li>
 
-                            </ul>
-                        </div>
-                        @endauth
-                        <!-- end of sidebar -->
+                            <li class="nav-item ml-md-auto dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Administrator
+                                    <span class="caret"></span>
+                                </a>
 
-                        <!-- top-nav -->
-                        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
-                                </div>
-                                <div class="col-md-8">
-                                    <ul class="navbar-nav">
-
-                                        <!-- Authentication Links -->
-                                        @guest
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white"
-                                                href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <ul>
+                                        <li class="dropdown-item">
+                                            Role Admin
                                         </li>
-                                        @if (Route::has('register'))
-                                        <li class="nav-item">
-                                            <a class="nav-link text-white"
-                                                href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
-                                        @endif
-
-                                        @else
-                                        <li class="nav-item ml-md-auto dropdown">
-                                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false" v-pre>
-                                                {{ auth()->user()->name }}
-                                                <span class="caret"></span>
+                                        <li class="dropdown-item">
+                                            <a class="nav-link" href="#" data-toggle="modal" data-target="#sign-out">
+                                                <i class="fas fa-sign-out-alt text-danger fa-lg"></i>
+                                                Sign out
                                             </a>
-
-                                            <div class="dropdown-menu dropdown-menu-right"
-                                                aria-labelledby="navbarDropdown">
-                                                <ul>
-                                                    <li class="dropdown-item">
-                                                        Role {{ auth()->user()->roles->first()->name }}
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a class="nav-link" href="#" data-toggle="modal"
-                                                            data-target="#sign-out">
-                                                            <i class="fas fa-sign-out-alt text-danger fa-lg"></i>
-                                                            Sign out
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </li>
-                                        @endguest
                                     </ul>
                                 </div>
-                            </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <!-- modal -->
+            <div class="modal fade" id="sign-out">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Want to leave?</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <!-- end of top-nav -->
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <!-- end of navbar -->
+                        <div class="modal-body">
+                            Press logout to leave
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
 
-        <!-- modal -->
-        <div class="modal fade" id="sign-out">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Want to leave?</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        Press logout to leave
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-
-                        <a class="btn btn-danger" href="{{ route('logout') }}" data-dismiss="modal" onclick="event.preventDefault();
+                            <a class="btn btn-danger" href="{{ route('logout') }}" data-dismiss="modal" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end of modal -->
+            <!-- end of modal -->
 
-        <main class="container-fluid">
-            <div class="row">
-                <div class="col-xl-10 col-lg-9 col-md-8 mt-md-5 ml-auto">
-                    @yield('content')
-                </div>
+            <!-- Page Content  -->
+            <div id="content">
+                @yield('content')
             </div>
 
-        </main>
-    </div>
+
+        </div>
+
+        @include('layouts.script')
+
+        @yield('scripts')
 </body>
 
 </html>
