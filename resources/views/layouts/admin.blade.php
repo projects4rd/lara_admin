@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="bottom-border pb-3">
-                    <img src="images/default-avatar.png" width="50" class="rounded-circle mr-3">
+                    <img src="/images/default-avatar.png" width="50" class="rounded-circle mr-3">
                     <a href="#" class="text-white">{{ auth()->user()->name }}</a>
                 </div>
 
