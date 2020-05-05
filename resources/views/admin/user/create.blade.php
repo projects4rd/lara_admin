@@ -129,10 +129,10 @@
                     </div>
                     <div class="rd-nav-label">
                         <div class="rd-nav-label-title">
-                            Submission
+                            Permissions
                         </div>
                         <div class="rd-nav-label-desc">
-                            Review and Submit
+                            Give permissions on user level
                         </div>
                     </div>
                 </div>
@@ -145,11 +145,9 @@
 
             <form method="POST" action="{{ route('users.store') }}" class="rd-form rd-form-label-right">
                 @csrf
-
                 @include('admin.user.form')
-
-                <input type="submit" value="Create" class="btn btn-primary">
             </form>
+
         </div>
     </div>
 </div>
