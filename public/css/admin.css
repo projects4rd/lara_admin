@@ -6,7 +6,7 @@
 }
 
 .rd-form {
-  padding: 1rem 0 5rem;
+  padding: 0 0 5rem;
   margin: auto;
 }
 
@@ -55,6 +55,7 @@
   background-color: #fff;
   min-height: 54px;
   padding: 0 25px;
+  margin-bottom: 1rem;
 }
 
 .rd-subheader .rd-subheader__main {
@@ -403,7 +404,7 @@ a:focus {
 
 #content {
   width: calc(100% - 250px);
-  padding: 20px;
+  padding: 0 20px;
   min-height: 100vh;
   transition: all 0.3s;
   position: absolute;
@@ -464,6 +465,25 @@ a:focus {
 
   #content.active {
     width: 100%;
+  }
+
+  .rd-nav {
+    margin-top: 1rem;
+  }
+
+  .rd-nav .rd-nav-item {
+    flex: 0 0 100%;
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+
+  .rd-nav .rd-nav-item .rd-link {
+    padding: 0;
+  }
+
+  .rd-nav .rd-nav-item .rd-link .rd-nav-body {
+    padding: 0.5rem 1.5rem;
   }
 }
 

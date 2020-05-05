@@ -17,7 +17,7 @@ body {
 }
 
 .rd-form {
-    padding: 1rem 0 5rem;
+    padding: 0 0 5rem;
     margin: auto;
 
     &.rd-form-label-right
@@ -68,9 +68,9 @@ body {
     align-items: stretch;
     flex-wrap: wrap;
     background-color: $white;
-
     min-height: 54px;
     padding: 0 25px;
+    margin-bottom: 1rem;
 
     .rd-subheader__main {
         display: flex;
@@ -144,6 +144,7 @@ body {
             width: 100%;
             height: 100%;
             background-color: #f7f8fb;
+            
             .rd-nav-body {
                 display: flex;
                 flex: 1;
@@ -426,7 +427,7 @@ a:focus {
 
 #content {
     width: calc(100% - 250px);
-    padding: 20px;
+    padding: 0 20px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -489,4 +490,25 @@ a:focus {
             width: 100%;
         }
     }
+
+    .rd-nav {
+        margin-top: 1rem;
+
+        .rd-nav-item {
+            flex: 0 0 100%;
+            position: relative;
+            width: 100%;
+            border-radius: .5rem;
+            
+            .rd-link {
+                padding: 0;
+
+                .rd-nav-body {
+                    padding: .5rem 1.5rem;
+                
+                }
+            }
+        }
+    }
+
 }
