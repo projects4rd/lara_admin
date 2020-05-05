@@ -12,12 +12,12 @@ $title-color: #434349;
 body {
     font-family: $font-family-sans-serif;
     line-height: 1.5;
-    font-size: 13px !important;
+    font-size: .8rem !important;
     font-weight: 300;
 }
 
 .rd-form {
-    padding: 4rem 0 5rem;
+    padding: 1rem 0 5rem;
     margin: auto;
 
     &.rd-form-label-right
@@ -87,7 +87,7 @@ body {
         .rd-subheader__title {
             margin: 0;
             padding: 0 1rem 0 0;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 500;
             color: $title-color;
             display: flex;
@@ -111,7 +111,7 @@ body {
 
         .rd-subheader__desc {
             padding: 0 0.5rem 0 0;
-            font-size: 1rem;
+            //font-size: 1rem;
             font-weight: 500;
             color: #959cb6;
         }
@@ -152,14 +152,14 @@ body {
 
                 .rd-nav-number {
                     display: flex;
-                    flex: 0 0 2.75rem;
+                    flex: 0 0 2.25rem;
                     align-items: center;
                     justify-content: center;
 
-                    font-size: 1.3rem;
+                    font-size: 1rem;
                     font-weight: 600;
-                    height: 2.75rem;
-                    width: 2.75rem;
+                    height: 2.25rem;
+                    width: 2.25rem;
                     background-color: rgba(93, 120, 255, 0.08);
                     color: $blue;
                     margin-right: 1rem;
@@ -172,7 +172,7 @@ body {
                     text-align: left;
 
                     .rd-nav-label-title {
-                        font-size: 1rem;
+                        font-size: .9rem;
                         font-weight: 600;
                         color: $blue;
                     }

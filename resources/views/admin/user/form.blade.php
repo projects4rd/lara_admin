@@ -8,7 +8,7 @@
             
             <div class="card-body">
                 <div class="form-group row">
-                    <label class="col-xl-4 col-xl-4 col-form-label">Avatar</label>
+                    <label class="col-xl-4 col-form-label">Avatar</label>
                     <div class="col-lg-9 col-xl-6">
                         <div class="rd-avatar rd-avatar--outline" id="rd_user_add_avatar">
                             <div class="rd-avatar__holder" style="background-image: url({{ $user->gravatar() }})">
