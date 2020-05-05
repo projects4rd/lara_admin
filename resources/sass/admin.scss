@@ -125,63 +125,75 @@ body {
 }
 
 .rd-nav {
-    display: flex;
-    align-items: flex-end;
     justify-content: space-between;
-    flex-wrap: wrap;
+    background-color: #ebeefb;
 
     .rd-nav-item {
-        background-color: #f7f8fb;
-        flex: 0 0 calc(50% - 0.25rem);
-        width: calc(50% - 0.25rem);
-        border-bottom-left-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: flex-end;
+        /*
+            1/4  - 4 columns per row
+            5px - spacing between columns
+        */
+        flex: 0 0 calc(1 / 4 * 100% - (1 - 1 / 4) * 5px);
+        //width: calc(1/4 * 100% - (1 - 1/4) * 5px);
+
+        border-radius: 0.5rem 0.5rem 0 0;
 
         .rd-link {
+            width: 100%;
+            height: 100%;
+            background-color: #f7f8fb;
             .rd-nav-body {
-                flex: 1;
                 display: flex;
+                flex: 1;
                 align-items: center;
-                flex-wrap: wrap;
-                color: #959cb6;
-                background-color: #f7f8fb;
-                padding: 2rem 2.5rem;
+                padding: 1rem 1.5rem;
 
                 .rd-nav-number {
-                    font-size: 1.3rem;
-                    font-weight: 600;
-                    flex: 0 0 2.75rem;
-                    height: 2.75rem;
-                    width: 2.75rem;
                     display: flex;
+                    flex: 0 0 2.75rem;
                     align-items: center;
                     justify-content: center;
+
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    height: 2.75rem;
+                    width: 2.75rem;
                     background-color: rgba(93, 120, 255, 0.08);
-                    color: #5d78ff;
+                    color: $blue;
                     margin-right: 1rem;
                     border-radius: 0.5rem;
                 }
 
-                .rd-nav-label-title {
-                    font-size: 1rem;
-                    font-weight: 600;
+                .rd-nav-label {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: left;
+
+                    .rd-nav-label-title {
+                        font-size: 1rem;
+                        font-weight: 600;
+                        color: $blue;
+                    }
+
+                    .rd-nav-label-desc {
+                        color: #959cb6;
+                    }
                 }
             }
         }
 
-        &[data-rd-state="current"] {
-            background-color: #fff;
-            .rd-link {
-                .rd-nav-body {
-                    .rd-nav-number {
-                        color: #fff;
-                        background-color: #5d78ff;
-                    }
+        .rd-link.active {
+            background-color: $white;
+            .rd-nav-body {
+                .rd-nav-number {
+                    color: $white;
+                    background-color: #5d78ff;
+                }
 
-                    .rd-nav-label-title {
-                        color: #5d78ff;
-                    }
+                .rd-nav-label-title {
+                    color: #5d78ff;
                 }
             }
         }
