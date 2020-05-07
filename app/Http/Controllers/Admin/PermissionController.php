@@ -28,7 +28,7 @@ class PermissionController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('admin.permisson.index', compact('permissions'));
+        return view('admin.permission.index', compact('permissions'));
     }
 
     /**

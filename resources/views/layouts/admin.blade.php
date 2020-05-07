@@ -79,7 +79,7 @@
 
                             @can('list-permissions')
                             <li>
-                                <a href="#">
+                                <a href="{{ route('permissions.index') }}">
                                     <i class="fas fa-user-lock fa-lg mr-3"></i>
                                     Permissions
                                 </a>
