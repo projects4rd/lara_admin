@@ -4,11 +4,6 @@
 
 @section('content')
 
-
-<div id="flash-msg">
-    @include('shared.flash-message')
-</div>
-
 <div class="rd-portlet">
     <div class="rd-subheader" id="rd_subheader">
 
