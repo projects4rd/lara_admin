@@ -1,7 +1,3 @@
-<script  type="application/javascript" src="{{ mix('js/app.js') }}"></script>
-<script  type="application/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-@stack('scripts')
-
 <script type="application/javascript">
     document.addEventListener('DOMContentLoaded', function() {
 
