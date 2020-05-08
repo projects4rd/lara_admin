@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
 
+use DataTables;
+
 class UserController extends Controller
 {
     use Authorizable;
@@ -29,10 +31,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     $result = User::latest()->paginate();
+    //     return view('admin.user.index', compact('result'));
+    // }
+
+    public function index(Request $request)
     {
-        $result = User::latest()->paginate();
-        return view('admin.user.index', compact('result'));
+        if ($request->ajax()) {
+            $users = User::latest()->get();
+
+            return Datatables::of($users)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+
+                    $action = '<a class="btn btn-info" id="show-user" data-toggle="modal" data-id=' . $row->id . '>Show</a>
+<a class="btn btn-success" id="edit-user" data-toggle="modal" data-id=' . $row->id . '>Edit </a>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<a id="delete-user" data-id=' . $row->id . ' class="btn btn-danger delete-user">Delete</a>';
+
+                    return $action;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('admin.user.index', compact('users'));
     }
 
     /**

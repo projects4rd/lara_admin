@@ -3,18 +3,18 @@
 @section('title', 'Users')
 
 @section('content')
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-5">
-        <h3 class="modal-title">{{ $result->total() }} {{ Str::plural('User', $result->count()) }} </h3>
+        <h3 class="modal-title">{{ $users->total() }} {{ Str::plural('User', $users->count()) }} </h3>
     </div>
     <div class="col-md-7 page-action text-right">
         @can('create-users')
         <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create</a>
         @endcan
     </div>
-</div>
+</div> --}}
 
-<div class="result-set">
+{{-- <div class="users-set">
     <table class="table table-bordered table-striped table-hover" id="data-table">
         <thead>
             <tr>
@@ -29,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($result as $item)
+            @foreach($users as $item)
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
@@ -51,8 +51,48 @@
     </table>
 
     <div class="text-center">
-        {{ $result->links() }}
+        {{ $users->links() }}
     </div>
-</div>
+</div> --}}
 
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-right">
+                <a class="btn btn-success mb-2" id="new-user" data-toggle="modal">New User</a>
+            </div>
+        </div>
+    </div>
+        
+    <table class="table table-bordered data-table" >
+    <thead>
+        <tr id="">
+            <th width="5%">No</th>
+            <th width="5%">Id</th>
+            <th width="30%">Name</th>
+            <th width="30%">Email</th>
+            <th width="20%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </table>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+        
+            var table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('users.index') }}",
+                columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'email', name: 'email'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+        });
+    </script>
 @endsection
