@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\User;
+
 use App\Permission;
 use App\Authorizable;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
-
-use DataTables;
 
 class UserController extends Controller
 {
@@ -37,27 +38,27 @@ class UserController extends Controller
     //     return view('admin.user.index', compact('result'));
     // }
 
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $users = User::latest()->get();
+        return view('admin.user.index');
+    }
 
-            return Datatables::of($users)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUsers()
+    {
+        $users = User::latest()->get();
 
-                    $action = '<a class="btn btn-info" id="show-user" data-toggle="modal" data-id=' . $row->id . '>Show</a>
-<a class="btn btn-success" id="edit-user" data-toggle="modal" data-id=' . $row->id . '>Edit </a>
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<a id="delete-user" data-id=' . $row->id . ' class="btn btn-danger delete-user">Delete</a>';
-
-                    return $action;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('admin.user.index', compact('users'));
+        return DataTables::of($users)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                return '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**

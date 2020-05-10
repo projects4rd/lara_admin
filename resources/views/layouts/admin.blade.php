@@ -18,18 +18,17 @@
 
             <!-- Page Content  -->
             <div id="content">
-                    
+
                 @include('shared.flash-message')
 
                 @yield('content')
             </div>
 
-
         </div>
 
         @include('layouts.partials.admin.scripts')
 
-        @yield('scripts')
+        @stack('scripts')
 </body>
 
 </html>
