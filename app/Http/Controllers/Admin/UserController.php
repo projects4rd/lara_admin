@@ -45,9 +45,10 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+        $users = User::latest()->get();
         if ($request->ajax()) {
-            $data = User::latest()->get();
-            return Datatables::of($data)
+            
+            return Datatables::of($users)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
@@ -62,7 +63,7 @@ class UserController extends Controller
                 ->make(true);
         }
 
-        return view('admin.user.index');
+        return view('admin.user.index', compact('users'));
     }
 
     /**
