@@ -27,6 +27,7 @@
         </tr>
     </thead>
 </table>
+
 @endsection
 
 @push('scripts')
@@ -35,6 +36,7 @@
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: "{!! route('users-datatable') !!}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
