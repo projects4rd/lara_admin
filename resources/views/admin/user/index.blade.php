@@ -32,12 +32,10 @@
 @push('scripts')
 <script type="application/javascript">
     $(function () {
-        console.log('Before datatable');
-
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('users.index') }}",
+            ajax: "{!! route('users-datatable') !!}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},

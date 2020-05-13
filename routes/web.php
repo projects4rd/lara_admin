@@ -23,8 +23,7 @@ Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'Admin\AdminDashboardController@index')->name('dashboard');
 
-    Route::get('users', 'Admin\UserController@index')->name('users.index');
-    Route::get('users', 'Admin\UserController@getUsers')->name('users.get');
+    Route::get('users-datatable', 'Admin\UserController@getUsers')->name('users-datatable');
     Route::resource('users', 'Admin\UserController');
 
     Route::resource('roles', 'Admin\RoleController');

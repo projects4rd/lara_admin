@@ -46,6 +46,18 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::latest()->get();
+        return view('admin.user.index', compact('users'));
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUsers(Request $request)
+    {
+        $users = User::latest()->get();
+
         if ($request->ajax()) {
             
             return Datatables::of($users)
@@ -62,26 +74,6 @@ class UserController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-
-        return view('admin.user.index', compact('users'));
-    }
-
-    /**
-     * Process datatables ajax request.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getUsers()
-    {
-        $users = User::latest()->get();
-
-        return DataTables::of($users)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                return '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-            })
-            ->rawColumns(['action'])
-            ->make(true);
     }
 
     /**
