@@ -32,17 +32,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $result = User::latest()->paginate();
-    //     return view('admin.user.index', compact('result'));
-    // }
-
-    // public function index()
-    // {
-    //     return view('admin.user.index');
-    // }
-
     public function index(Request $request)
     {
         $users = User::latest()->get();
@@ -59,17 +48,22 @@ class UserController extends Controller
         $users = User::latest()->get();
 
         if ($request->ajax()) {
-            
+
             return Datatables::of($users)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $action = '<a class="btn btn-info" id="show-user" data-toggle="modal" data-id=' . $row->id . '>Show</a>
-<a class="btn btn-success" id="edit-user" data-toggle="modal" data-id=' . $row->id . '>Edit </a>
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<a id="delete-user" data-id=' . $row->id . ' class="btn btn-danger delete-user">Delete</a>';
+                    return '
+                    <a class="btn btn-success" id="edit-user" data-toggle="modal" data-id=' . $row->id . '>Edit </a>
+                    <a id="delete-user" data-id=' . $row->id . ' class="btn btn-danger delete-user">Delete</a>
+                    <meta name="csrf-token" content="{{ csrf_token() }}">';
 
-                    return $action;
+                })
+                ->editColumn('created_at', function ($user) {
+                    return $user->created_at->format('d-m-Y');
+                })
+                ->editColumn('updated_at', function ($user) {
+                    return $user->updated_at->format('d-m-Y');
                 })
                 ->rawColumns(['action'])
                 ->make(true);

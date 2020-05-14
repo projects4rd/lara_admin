@@ -9,15 +9,16 @@
 
         <div class="rd-subheader__main">
 
-            <h3 class="rd-subheader__title">
+            <h5 class="rd-subheader__title">
                 New User
-            </h3>
+            </h5>
 
             <span class="rd-subheader__separator rd-subheader__separator--v"></span>
 
             <div class="rd-subheader__group" id="rd_subheader_search">
                 <span class="rd-subheader__desc" id="rd_subheader_total">
-                    Enter user details and save </span>
+                    Enter user details and save 
+                </span>
             </div>
 
         </div>

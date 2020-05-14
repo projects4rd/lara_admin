@@ -6,7 +6,7 @@
 
     <div class="sidebar-header">
         <a href="#" class="navbar-brand d-block mx-auto text-center py-3 mb-4 bottom-border">
-            {{ config('app.name', 'Lara Admin') }}
+            {{ config('app.name', 'RD-BACKEND') }}
         </a>
     </div>
 

@@ -4,14 +4,40 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-5">
-        <h3 class="modal-title">{{ $users->count() }} {{ Str::plural('User', $users->count()) }} </h3>
+<section class="rd-subheader">
+
+    <div class="rd-subheader__main">
+        <h5 class="rd-subheader__title">
+            Users
+        </h5>
+
+        <span class="rd-subheader__separator rd-subheader__separator--v"></span>
+
+        <span class="rd-subheader__desc text-left">
+            Display All Users 
+        </span>
+
     </div>
-    <div class="col-md-7 page-action text-right">
+
+    <div class="rd-subheader__toolbar text-right">
+        <nav class="text-right" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">All Users</li>
+            </ol>
+        </nav>
+    </div>
+
+</section>
+
+<div class="row my-3">
+    <div class="col-md-7 page-action text-left">
         @can('create-users')
-        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create</a>
+        <a href="{{ route('users.create') }}" class="btn btn-success btn-sm"> <i class="fas fa-user-plus"></i> Add New</a>
         @endcan
+    </div>
+    <div class="col-md-5 text-right">
+        <h5 class="modal-title">{{ $users->count() }} {{ Str::plural('User', $users->count()) }} </h5>
     </div>
 </div>
 
