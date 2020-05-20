@@ -3,7 +3,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h5 class="col-xl-9 offset-xl-3 mb-0">User's Profile Details</h5>
+                <h5 class="col-xl-9 offset-xl-3 mb-0">User Details</h5>
             </div>
 
             <div class="card-body">
@@ -42,7 +42,7 @@
                     <div class="col-lg-4 col-xl-4">
                         <input class="form-control" id="last_name" name="last_name" type="text"
                             value="{{ $user->last_name }}" aria-invalid="false">
-                        @if ($errors->has('Last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p>
+                        @if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p>
                         @endif
                     </div>
                 </div>
@@ -58,6 +58,16 @@
                                 aria-invalid="false">
                             @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group row @if ($errors->has('slug')) has-error @endif">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="last_name">Slug</label>
+                    <div class="col-lg-4 col-xl-4">
+                        <input class="form-control" id="slug" name="slug" type="text"
+                            value="{{ $user->slug }}" aria-invalid="false">
+                        @if ($errors->has('slug')) <p class="help-block">{{ $errors->first('slug') }}</p>
+                        @endif
                     </div>
                 </div>
 
@@ -95,6 +105,20 @@
                         @if ($errors->has('roles')) <p class="help-block">{{ $errors->first('roles') }}</p> @endif
                     </div>
                 </div>
+
+                <div class="form-group row @if ($errors->has('approved')) has-error @endif">
+                    <label class="col-xl-4 col-lg-4 col-form-label" for="roles">Approved</label>
+                    <div class="col-lg-4 col-xl-4">
+                        <div class="checkbox-inline">
+
+                                <input id="approved" type="checkbox" checked="">
+                                <span></span>
+                                @if ($errors->has('approved')) <p class="help-block">{{ $errors->first('approved') }}</p> @endif
+                         
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

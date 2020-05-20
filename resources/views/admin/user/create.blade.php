@@ -71,10 +71,10 @@
                     </div>
                     <div class="rd-nav-label">
                         <div class="rd-nav-label-title">
-                            Profile
+                            Account
                         </div>
                         <div class="rd-nav-label-desc">
-                            User's Personal Information
+                            User's Acount Information
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,10 @@
                     </div>
                     <div class="rd-nav-label">
                         <div class="rd-nav-label-title">
-                            Account
+                            Contact
                         </div>
                         <div class="rd-nav-label-desc">
-                            User's Account &amp; Settings
+                            User's Contact Info &amp; Settings
                         </div>
                     </div>
                 </div>

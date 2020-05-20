@@ -98,10 +98,12 @@ class UserController extends Controller
             $this->validate($request, [
                 'first_name' => 'bail|required|min:2',
                 'last_name'  => 'bail|required|min:2',
-                'email'      => 'required|email|unique:users',
-                'password'   => 'required|min:6',
+                'email'      => 'required|email|max:255|unique:users',
+                'password'   => 'required|confirmed|min:6',
+                'slug'       => 'required|alpha_dash|min:5|max:255|unique:users,slug',
                 'roles'      => 'required|min:1'
             ]);
+
             dd($request);
             $request->merge(['password' => Hash::make($request->input('password'))]);
 
