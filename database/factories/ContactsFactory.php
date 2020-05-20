@@ -13,5 +13,6 @@ $factory->define(Contact::class, function (Faker $faker) {
         'phone'      => $faker->e164PhoneNumber,
         'mobile'     => $faker->e164PhoneNumber,
         'bio'        => $faker->text(rand(250, 300)),
+        'salutation' => $faker->title,
     ];
 });

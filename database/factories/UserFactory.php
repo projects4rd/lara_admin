@@ -26,5 +26,10 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
         'slug' => Str::slug($name),
+        'approved' => false,
+        'last_login' => now(),
+        'login_count' => $faker->numberBetween($min = 0, $max = 1000),
+        'blocked_code' => 0,
+        'password_expired' => null,
     ];
 });

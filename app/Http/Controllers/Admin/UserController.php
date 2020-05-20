@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Role;
 use App\User;
 
+use Exception;
 use App\Permission;
 use App\Authorizable;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
 
@@ -57,7 +59,6 @@ class UserController extends Controller
                     <a class="btn btn-success" id="edit-user" data-toggle="modal" data-id=' . $row->id . '>Edit </a>
                     <a id="delete-user" data-id=' . $row->id . ' class="btn btn-danger delete-user">Delete</a>
                     <meta name="csrf-token" content="{{ csrf_token() }}">';
-
                 })
                 ->editColumn('created_at', function ($user) {
                     return $user->created_at->format('d-m-Y');
@@ -92,22 +93,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'     => 'bail|required|min:2',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'roles'    => 'required|min:1'
-        ]);
+        DB::beginTransaction();
+        try {
+            $this->validate($request, [
+                'first_name' => 'bail|required|min:2',
+                'last_name'  => 'bail|required|min:2',
+                'email'      => 'required|email|unique:users',
+                'password'   => 'required|min:6',
+                'roles'      => 'required|min:1'
+            ]);
+            dd($request);
+            $request->merge(['password' => Hash::make($request->input('password'))]);
 
-        $request->merge(['password' => Hash::make($request->input('password'))]);
+            if ($user = User::create($request->except('roles', 'permissions'))) {
+                $this->syncPermissions($request, $user);
+                $alert = ['type' => 'success', 'message' => __('User has been created')];
+            } else {
+                $alert = ['type' => 'error', 'message' => __('Unable to create user')];
+            }
 
-        if ($user = User::create($request->except('roles', 'permissions'))) {
-            $this->syncPermissions($request, $user);
-            $alert = ['type' => 'success', 'message' => __('User has been created')];
-        } else {
-            $alert = ['type' => 'error', 'message' => __('Unable to create user')];
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            throw $e;
         }
-
         return redirect()->route('admin.users.index')->with($alert['type'], $alert['message']);
     }
 

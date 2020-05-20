@@ -37,7 +37,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <ul class="rd-nav">
                         <li class="rd-nav__item">
-                            <a href="#" class="rd-nav__link">
+                            <a href="#" class="rd-nav__link" onclick="document.getElementById('rd-form').submit();return false;console.log('test');">
                                 <i class="rd-nav__link-icon flaticon2-writing"></i>
                                 <span class="rd-nav__link-text">Save &amp; continue</span>
                             </a>
@@ -139,7 +139,7 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <form method="POST" action="{{ route('users.store') }}" class="rd-form rd-form-label-right">
+            <form method="POST" action="{{ route('users.store') }}" id="rd-form" class="rd-form rd-form-label-right">
                 @csrf
                 @include('admin.user.form')
             </form>
