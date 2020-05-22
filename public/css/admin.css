@@ -10,6 +10,10 @@
   margin: auto;
 }
 
+.rd-form i {
+  color: #b5b5c3;
+}
+
 .rd-form.rd-form-label-right .form-group label:not(.rd-checkbox):not(.rd-radio):not(.rd-option) {
   text-align: right;
 }
@@ -25,6 +29,39 @@
   margin: 0;
   color: #48465b;
   background-color: #fff;
+}
+
+.rd-form .form-group .input-group.rd-input-group-solid {
+  align-items: center;
+  background-color: #f3f6f9;
+  border-radius: 0.42rem;
+}
+
+.rd-form .form-group .input-group.rd-input-group-solid .input-group-prepend {
+  background-color: transparent;
+  border: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.rd-form .form-group .input-group.rd-input-group-solid .input-group-prepend .input-group-text {
+  background-color: transparent;
+  border: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.rd-form .form-group .form-control {
+  border: 0;
+  background-color: transparent;
+  outline: 0 !important;
+  box-shadow: none;
+}
+
+.rd-form .form-group .form-control.rd-form-control-solid {
+  background-color: #f3f6f9;
+  border-color: #f3f6f9;
+  color: #464e5f;
 }
 
 .rd-form .form-group .checkbox-inline {
@@ -65,6 +102,38 @@
   margin-top: -2px;
   width: 5px;
   height: 10px;
+}
+
+.rd-form .form-group .switch {
+  margin-top: 0.15rem;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+.rd-form .form-group .switch input:empty {
+  margin-left: -999px;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  position: absolute;
+  opacity: 0;
+}
+
+.rd-form .form-group .switch input:empty ~ span::after,
+.rd-form .form-group .switch input:empty ~ span::before {
+  display: inline-block;
+  width: 54px;
+  border-radius: 15px;
+}
+
+.rd-form .form-group .switch input:checked ~ span::before {
+  background-color: #ecf0f3;
+}
+
+.rd-form .form-group .switch input:checked ~ span::after {
+  opacity: 1;
+  color: #fff;
+  background-color: #3699ff;
 }
 
 .btn.rd-btn-bold {
@@ -160,7 +229,7 @@
       1/4  - 4 columns per row
       5px - spacing between columns
   */
-  flex: 0 0 calc(1 / 4 * 100% - (1 - 1 / 4) * 5px);
+  flex: 0 0 calc(1 / 5 * 100% - (1 - 1 / 5) * 5px);
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
