@@ -45,47 +45,10 @@
                 <button
                     type="button"
                     class="btn rd-btn-brand rd-btn-bold btn-sm"
-                >Save</button>
-                <button
-                    type="button"
-                    class="btn rd-btn-brand rd-btn-bold btn-sm dropdown-toggle dropdown-toggle-split"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    onclick="document.getElementById('rd-form').submit();return false;"
                 >
+                    Save
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <ul class="rd-nav">
-                        <li class="rd-nav__item">
-                            <a
-                                href="#"
-                                class="rd-nav__link"
-                                onclick="document.getElementById('rd-form').submit();return false;console.log('test');"
-                            >
-                                <i class="rd-nav__link-icon flaticon2-writing"></i>
-                                <span class="rd-nav__link-text">Save &amp; continue</span>
-                            </a>
-                        </li>
-                        <li class="rd-nav__item">
-                            <a
-                                href="#"
-                                class="rd-nav__link"
-                            >
-                                <i class="rd-nav__link-icon flaticon2-medical-records"></i>
-                                <span class="rd-nav__link-text">Save &amp; add new</span>
-                            </a>
-                        </li>
-                        <li class="rd-nav__item">
-                            <a
-                                href="#"
-                                class="rd-nav__link"
-                            >
-                                <i class="rd-nav__link-icon flaticon2-hourglass-1"></i>
-                                <span class="rd-nav__link-text">Save &amp; exit</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
 
         </div>

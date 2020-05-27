@@ -93,6 +93,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         DB::beginTransaction();
         try {
             $this->validate($request, [
@@ -104,7 +105,6 @@ class UserController extends Controller
                 'roles'      => 'required|min:1'
             ]);
 
-            dd($request);
             $request->merge(['password' => Hash::make($request->input('password'))]);
 
             if ($user = User::create($request->except('roles', 'permissions'))) {

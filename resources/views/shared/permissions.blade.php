@@ -2,7 +2,8 @@
 
     <div class="card-header">
         <h5 class="col-xl-9 offset-xl-3 mb-0">{{ $title ?? 'Override Permissions' }} {!! isset($user) ? '<span
-                class="text-danger">(' .
+                class="text-danger"
+            >(' .
                 $user->getDirectPermissions()->count() . ')</span>' : '' !!}
         </h5>
     </div>
@@ -14,9 +15,9 @@
 
             <?php
                     $permissionFound = null;
-                    if ( isset($role) ) {
+                    {{-- if ( isset($role) ) {
                         $permissionFound = $role->hasPermissionTo($permission->name);
-                    }
+                    } --}}
                     if ( isset($user)) {
                         $permissionFound = $user->hasDirectPermission($permission->name);
                     }
@@ -28,22 +29,28 @@
                     } 
                 ?>
 
-                @if ($newGroup)
-                    @if ($permissionGroup !== '') </ul> @endif
-                    <ul>
-                       <h6 class="d-flex justify-content-start">{{$permission->group}}</h6>
+            @if ($newGroup)
+            @if ($permissionGroup !== '') </ul> @endif
+            <ul>
+                <h6 class="d-flex justify-content-start">{{$permission->group}}</h6>
                 @endif
 
-                <li>                
+                <li>
                     <label class="{{ Str::contains($permission->name, 'delete') ? 'text-danger' : '' }}">
-                        <input class="form-check-input" type="checkbox" name="permissions[]" value={{ $permission->name }}
-                            id="chk-permission-{{ $permission->id }}" checked={{ $permissionFound }}>
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="permissions[]"
+                            value="{{ $permissionFound ? $permission->name : null }}"
+                            id="chk-permission-{{ $permission->id }}"
+                            checked={{ $permissionFound ? 'checked' : null }}
+                        >
                         {{ $permission->name }}
                     </label>
                 </li>
 
-            @endforeach
+                @endforeach
         </div>
 
-    </div>    
+    </div>
 </div>

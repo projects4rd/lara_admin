@@ -31,7 +31,7 @@
                             <i class="fa fa-pen"></i>
                             <input
                                 type="file"
-                                name="rd_user_add_user_avatar"
+                                name="avatar"
                             >
                         </label>
                         <span
@@ -58,7 +58,7 @@
                             class="form-control rd-form-control-solid"
                             id="phone"
                             name="phone"
-                            value="{{ $user->phone }}"
+                            value="{{ old('phone') ?? $user->phone }}"
                             aria-invalid="false"
                         >
                         @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
@@ -78,7 +78,7 @@
                             class="form-control rd-form-control-solid"
                             id="mobile"
                             name="mobile"
-                            value="{{ $user->mobile }}"
+                            value="{{ old('mobile') ?? $user->mobile }}"
                             aria-invalid="false"
                         >
                         @if ($errors->has('mobile')) <p class="help-block">{{ $errors->first('mobile') }}</p> @endif
@@ -97,7 +97,7 @@
                         class="form-control rd-form-control-solid"
                         name="salutation"
                         type="text"
-                        value="{{ $user->salutation }}"
+                        value="{{ old('salutation') ?? $user->salutation }}"
                         aria-invalid="false"
                     >
                     @if ($errors->has('salutation')) <p class="help-block">{{ $errors->first('salutation') }}</p>
@@ -115,7 +115,7 @@
                         class="form-control rd-form-control-solid"
                         name="bio"
                         rows="3"
-                    >{{ $user->bio }}</textarea>
+                    >{{ old('bio') ?? $user->bio }}</textarea>
                     @if ($errors->has('bio')) <p class="help-block">{{ $errors->first('bio') }}</p>
                     @endif
                 </div>

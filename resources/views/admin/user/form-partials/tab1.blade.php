@@ -19,7 +19,7 @@
                         id="first_name"
                         name="first_name"
                         type="text"
-                        value="{{ $user->first_name }}"
+                        value="{{ old('first_name') ?? $user->first_name }}"
                         aria-invalid="false"
                     >
                     @if ($errors->has('first_name')) <p class="help-block">{{ $errors->first('first_name') }}</p>
@@ -38,7 +38,7 @@
                         id="last_name"
                         name="last_name"
                         type="text"
-                        value="{{ $user->last_name }}"
+                        value="{{ old('last_name') ?? $user->last_name }}"
                         aria-invalid="false"
                     >
                     @if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p>
@@ -61,7 +61,7 @@
                             class="form-control rd-form-control-solid"
                             id="email"
                             name="email"
-                            value="{{ $user->email }}"
+                            value="{{ old('email') ?? $user->email }}"
                             aria-invalid="false"
                         >
                         @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
@@ -80,7 +80,7 @@
                         id="slug"
                         name="slug"
                         type="text"
-                        value="{{ $user->slug }}"
+                        value="{{ old('slug') ?? $user->slug }}"
                         aria-invalid="false"
                     >
                     @if ($errors->has('slug')) <p class="help-block">{{ $errors->first('slug') }}</p>
@@ -99,8 +99,7 @@
                         id="password"
                         name="password"
                         class="form-control rd-form-control-solid"
-                        value="{{ $user->password }}"
-                        placeholder="Password"
+                        value="{{ old('password') ?? $user->password }}"
                     >
                     @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
                 </div>
@@ -117,8 +116,7 @@
                         id="password_confirmation"
                         name="password_confirmation"
                         class="form-control rd-form-control-solid"
-                        value="{{ $user->password_confirmation }}"
-                        placeholder="Confirm password"
+                        value="{{ old('password_confirmation') ?? $user->password_confirmation }}"
                     >
                     @if ($errors->has('password_confirmation')) <p class="help-block">
                         {{ $errors->first('password_confirmation') }}
@@ -164,7 +162,8 @@
                             id="approved"
                             name="approved"
                             type="checkbox"
-                            checked=""
+                            value="{{ old('approved') ?? $user->approved }}"
+                            checked="{{ old('approved') ?? $user->approved }}"
                         >
                         <span></span>
                         @if ($errors->has('approved')) <p class="help-block">{{ $errors->first('approved') }}</p>
