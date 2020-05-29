@@ -56,7 +56,7 @@
 
 @endsection
 
-@push('scripts')
+@push('page-script')
 <script type="application/javascript">
     $(function () {
         $('#users-table').DataTable({

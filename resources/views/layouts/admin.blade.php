@@ -28,7 +28,9 @@
 
         @include('layouts.partials.admin.scripts')
 
-        @stack('scripts')
+        @stack('generic-script')
+        @stack('sidebar-script')
+        @stack('page-script')
 </body>
 
 </html>

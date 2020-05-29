@@ -6,6 +6,9 @@
 
 <title>{{ config('app.name', 'Projects4RD') }}</title>
 
+<!-- Script -->
+
+
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css">
