@@ -22,7 +22,7 @@
                         value="{{ old('first_name') ?? $user->first_name }}"
                         aria-invalid="false"
                     >
-                    @if ($errors->has('first_name')) <p class="help-block">{{ $errors->first('first_name') }}</p>
+                    @if ($errors->has('first_name')) <p class="help-block danger">{{ $errors->first('first_name') }}</p>
                     @endif
                 </div>
             </div>
@@ -41,7 +41,7 @@
                         value="{{ old('last_name') ?? $user->last_name }}"
                         aria-invalid="false"
                     >
-                    @if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p>
+                    @if ($errors->has('last_name')) <p class="help-block danger">{{ $errors->first('last_name') }}</p>
                     @endif
                 </div>
             </div>
@@ -64,7 +64,7 @@
                             value="{{ old('email') ?? $user->email }}"
                             aria-invalid="false"
                         >
-                        @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
+                        @if ($errors->has('email')) <p class="help-block danger">{{ $errors->first('email') }}</p> @endif
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                         value="{{ old('slug') ?? $user->slug }}"
                         aria-invalid="false"
                     >
-                    @if ($errors->has('slug')) <p class="help-block">{{ $errors->first('slug') }}</p>
+                    @if ($errors->has('slug')) <p class="help-block danger">{{ $errors->first('slug') }}</p>
                     @endif
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         class="form-control rd-form-control-solid"
                         value="{{ old('password') ?? $user->password }}"
                     >
-                    @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
+                    @if ($errors->has('password')) <p class="help-block danger">{{ $errors->first('password') }}</p> @endif
                 </div>
             </div>
 
@@ -118,7 +118,7 @@
                         class="form-control rd-form-control-solid"
                         value="{{ old('password_confirmation') ?? $user->password_confirmation }}"
                     >
-                    @if ($errors->has('password_confirmation')) <p class="help-block">
+                    @if ($errors->has('password_confirmation')) <p class="help-block danger">
                         {{ $errors->first('password_confirmation') }}
                     </p> @endif
                 </div>
@@ -141,12 +141,12 @@
                         @foreach($roles as $id => $name)
                         <option
                             value="{{ $id }}"
-                            {{ $user->hasRole($name) ? "selected" : null }}
+                            {{ (collect(old("roles"))->contains($id) ?? $user->hasRole($name)) ? "selected" : null }}
                         >{{ $name }}
                         </option>
                         @endforeach
                     </select>
-                    @if ($errors->has('roles')) <p class="help-block">{{ $errors->first('roles') }}</p> @endif
+                    @if ($errors->has('roles')) <p class="help-block danger">{{ $errors->first('roles') }}</p> @endif
                 </div>
             </div>
 
@@ -163,10 +163,10 @@
                             name="approved"
                             type="checkbox"
                             value="{{ old('approved') ?? $user->approved }}"
-                            checked="{{ old('approved') ?? $user->approved }}"
+                            checked=""
                         >
                         <span></span>
-                        @if ($errors->has('approved')) <p class="help-block">{{ $errors->first('approved') }}</p>
+                        @if ($errors->has('approved')) <p class="help-block danger">{{ $errors->first('approved') }}</p>
                         @endif
 
                     </div>

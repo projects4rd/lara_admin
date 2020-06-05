@@ -11,6 +11,7 @@
     <div class="card-body">
         <div class="form-group row d-flex justify-content-around">
             <?php $permissionGroup = ''; ?>
+        
             @foreach($permissions as $permission)
 
             <?php
@@ -21,6 +22,8 @@
                     if ( isset($user)) {
                         $permissionFound = $user->hasDirectPermission($permission->name);
                     }
+                   
+                    $checkboxChecked = ($permissionFound || collect(old("permissions"))->contains($permission->id));
 
                     $newGroup = false;
                     if ($permissionGroup !== $permission->group){
@@ -41,9 +44,9 @@
                             class="form-check-input"
                             type="checkbox"
                             name="permissions[]"
-                            value="{{ $permission->name }}"
+                            value="{{ $permission->id }}"
                             id="chk-permission-{{ $permission->id }}"
-                            {{ $permissionFound ? 'checked="checked"' : "" }}
+                            {{ $checkboxChecked ? 'checked="checked"' : "" }}
                         >
                         {{ $permission->name }}
                     </label>

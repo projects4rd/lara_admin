@@ -93,34 +93,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         DB::beginTransaction();
         try {
             $this->validate($request, [
                 'first_name' => 'bail|required|min:2',
                 'last_name'  => 'bail|required|min:2',
                 'email'      => 'required|email|max:255|unique:users',
-                'password'   => 'required|confirmed|min:6',
+                'password'   => 'required|confirmed|min:8',
                 'slug'       => 'required|alpha_dash|min:5|max:255|unique:users,slug',
                 'roles'      => 'required|min:1'
             ]);
 
             $request->merge(['password' => Hash::make($request->input('password'))]);
+ //           $request->request->set('name', $request->input('first_name') . ' ' . $request->input('last_name'));
 
-            if ($user = User::create($request->except('roles', 'permissions'))) {
-                $this->syncPermissions($request, $user);
-                $alert = ['type' => 'success', 'message' => __('User has been created')];
-            } else {
-                $alert = ['type' => 'error', 'message' => __('Unable to create user')];
-            }
-
+            $user = User::create($request->except('roles', 'permissions'));
+            $this->syncPermissionsAndRoles($request, $user);
 
             DB::commit();
+
+            return redirect()->route('users.index')->with('success', __('User has been created'));
+
         } catch (Exception $e) {
             DB::rollback();
-            throw $e;
+
+            return redirect()->route('users.create')->with('error', __('Unable to create user') . $e->getMessage())->withInput();;
+            //throw $e;
         }
-        return redirect()->route('admin.users.index')->with($alert['type'], $alert['message']);
     }
 
     /**
@@ -170,7 +169,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->input('password'));
         }
 
-        $this->syncPermissions($request, $user);
+        $this->syncPermissionsAndRoles($request, $user);
 
         $user->save();
 
@@ -189,7 +188,7 @@ class UserController extends Controller
 
         $user->update($input);
 
-        $this->syncPermissions($request, $user);
+        $this->syncPermissionsAndRoles($request, $user);
 
         $alert = ['type' => 'success', 'message' => __('User has been updated')];
         return redirect()->route('admin.users.index')->with($alert['type'], $alert['message']);
@@ -217,11 +216,11 @@ class UserController extends Controller
         return redirect()->back()->with($alert['type'], $alert['message']);
     }
 
-    private function syncPermissions(Request $request, User $user)
+    private function syncPermissionsAndRoles(Request $request, User $user)
     {
         $roles = $request->get('roles', []);
         $permissions = $request->get('permissions', []);
-
+//dd($permissions);
         $roles = Role::find($roles);
 
         if ($user->hasAllRoles($roles)) {
