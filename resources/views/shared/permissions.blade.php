@@ -38,7 +38,7 @@
                 <h6 class="d-flex justify-content-start">{{$permission->group}}</h6>
                 @endif
 
-                <li>
+                <li class="nav-link">
                     <label class="{{ Str::contains($permission->name, 'delete') ? 'text-danger' : '' }}">
                         <input
                             class="form-check-input"

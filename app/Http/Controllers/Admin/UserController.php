@@ -105,20 +105,17 @@ class UserController extends Controller
             ]);
 
             $request->merge(['password' => Hash::make($request->input('password'))]);
- //           $request->request->set('name', $request->input('first_name') . ' ' . $request->input('last_name'));
+            $request->request->set('name', $request->input('first_name') . ' ' . $request->input('last_name'));
 
             $user = User::create($request->except('roles', 'permissions'));
             $this->syncPermissionsAndRoles($request, $user);
 
             DB::commit();
-
             return redirect()->route('users.index')->with('success', __('User has been created'));
 
         } catch (Exception $e) {
             DB::rollback();
-
             return redirect()->route('users.create')->with('error', __('Unable to create user') . $e->getMessage())->withInput();;
-            //throw $e;
         }
     }
 
