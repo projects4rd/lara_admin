@@ -15,9 +15,9 @@
 
             <?php
                     $permissionFound = null;
-                    {{-- if ( isset($role) ) {
+                    if ( isset($role) ) {
                         $permissionFound = $role->hasPermissionTo($permission->name);
-                    } --}}
+                    }
                     if ( isset($user)) {
                         $permissionFound = $user->hasDirectPermission($permission->name);
                     }
@@ -41,9 +41,9 @@
                             class="form-check-input"
                             type="checkbox"
                             name="permissions[]"
-                            value="{{ $permissionFound ? $permission->name : null }}"
+                            value="{{ $permission->name }}"
                             id="chk-permission-{{ $permission->id }}"
-                            checked={{ $permissionFound ? 'checked' : null }}
+                            {{ $permissionFound ? 'checked="checked"' : "" }}
                         >
                         {{ $permission->name }}
                     </label>

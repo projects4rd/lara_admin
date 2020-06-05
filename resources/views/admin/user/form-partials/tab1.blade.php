@@ -132,7 +132,7 @@
                 <div class="col-lg-4 col-xl-4">
                     <select
                         id="roles"
-                        name="roles"
+                        name="roles[]"
                         class="form-control rd-form-control-solid"
                         multiple="multiple"
                         required=""
