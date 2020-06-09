@@ -6,16 +6,19 @@ use App\Role;
 use App\User;
 
 use Exception;
+use App\Contact;
 use App\Permission;
 use App\Authorizable;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
@@ -91,23 +94,29 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
+        $validated = $request->validated();
+
         DB::beginTransaction();
         try {
-            $this->validate($request, [
-                'first_name' => 'bail|required|min:2',
-                'last_name'  => 'bail|required|min:2',
-                'email'      => 'required|email|max:255|unique:users',
-                'password'   => 'required|confirmed|min:8',
-                'slug'       => 'required|alpha_dash|min:5|max:255|unique:users,slug',
-                'roles'      => 'required|min:1'
-            ]);
-
             $request->merge(['password' => Hash::make($request->input('password'))]);
             $request->request->set('name', $request->input('first_name') . ' ' . $request->input('last_name'));
 
             $user = User::create($request->except('roles', 'permissions'));
+
+
+            $contact = Contact::create([
+                'first_name' => request('first_name'),
+                'last_name'  => request('last_name'),
+                'email'      => request('email'),
+                'phone'      => request('phone'),
+                'mobile'     => request('mobile'),
+                'salutation' => request('salutation'),
+                'bio'        => request('bio'),
+                'avatar'     => $this->convertAvatar($request),
+            ]);
+            
             $this->syncPermissionsAndRoles($request, $user);
 
             DB::commit();
@@ -115,7 +124,7 @@ class UserController extends Controller
 
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->route('users.create')->with('error', __('Unable to create user') . $e->getMessage())->withInput();;
+            return redirect()->route('users.create')->with('error', __('Unable to create user: ') . $e->getMessage())->withInput();
         }
     }
 
@@ -217,7 +226,7 @@ class UserController extends Controller
     {
         $roles = $request->get('roles', []);
         $permissions = $request->get('permissions', []);
-//dd($permissions);
+
         $roles = Role::find($roles);
 
         if ($user->hasAllRoles($roles)) {
@@ -228,5 +237,57 @@ class UserController extends Controller
 
         $user->syncRoles($roles);
         return $user;
+    }
+
+    private function convertAvatar($request)
+    {
+        if (!$request->hasFile('avatar')) {
+            return '';
+        }
+
+        $image         = $request->file('avatar');
+        $timestamp     = time();
+        $extension     = $image->getClientOriginalExtension();
+
+        $filename      = $timestamp . '.' . $extension;
+        $location      = public_path(config('rd-backend.image.directory') . '/' . $filename);
+        $fileWidth     = config('rd-backend.image.file_dimension.width');
+        $fileHeight    = config('rd-backend.image.file_dimension.height');
+
+        $thumbnail     = $timestamp . '_thumb.' . $extension;
+        $thumbLocation = public_path(config('rd-backend.image.directory') . '/' . $thumbnail);
+        $thumbWidth    = config('rd-backend.image.thumbnail_dimension.width');
+        $thumbHeight   = config('rd-backend.image.thumbnail_dimension.height');
+
+        try {
+
+            Image::make($image)->resize($fileWidth, $fileHeight)->save($location);
+            Image::make($image)->resize($thumbWidth, $thumbHeight)->save($thumbLocation);
+
+            return $filename;
+
+        } catch(Exception $e){
+            // do task when error
+            echo $e->getMessage();
+            throw new Exception($e->getMessage());
+        }
+
+    }
+
+    public function removeAvatar($image)
+    {
+        if (!empty($image)){
+            $imagePath     = public_path(config('rd-backend.image.directory') . '/' . $image);
+            $ext           = substr(strrchr($image, '.'), 1);
+            $thumbnailPath = str_replace(".{$ext}",  "_thumb.{$ext}", $imagePath);
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            if (file_exists($thumbnailPath)) {
+                unlink($thumbnailPath);
+            }
+        }
     }
 }

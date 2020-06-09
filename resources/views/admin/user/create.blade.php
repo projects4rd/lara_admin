@@ -183,6 +183,7 @@
                 method="POST"
                 action="{{ route('users.store') }}"
                 id="rd-form"
+                enctype="multipart/form-data"
                 class="rd-form rd-form-label-right"
             >
                 @csrf
