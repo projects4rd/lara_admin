@@ -186,7 +186,7 @@
                     class="rd-form rd-form-label-right"
                 >
                     @csrf
-                    @include('admin.user.form')
+                    @include('admin.user.create-form')
                 </form>
 
             </div>

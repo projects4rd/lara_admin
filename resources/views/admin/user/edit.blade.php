@@ -22,7 +22,7 @@
                         @csrf
                         @method('PUT')
 
-                        @include('admin.user.form')
+                        @include('admin.user.edit-form')
 
                         <!-- Submit Form Button -->
                         <input type="submit" value="Save Changes" class="btn btn-primary">
