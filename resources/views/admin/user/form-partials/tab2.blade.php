@@ -19,12 +19,14 @@
                         <div
                             class="rd-avatar__holder"
                             style="background-image: url({{ $user->gravatar() }})"
+                            data-default="{{ $user->gravatar() }}"
                         >
 
                         </div>
                         <label
                             class="rd-avatar__upload"
-                            data-toggle="rd-tooltip"
+                            data-action="change"
+                            data-toggle="tooltip"
                             title=""
                             data-original-title="Change avatar"
                         >
@@ -32,11 +34,13 @@
                             <input
                                 type="file"
                                 name="avatar"
+                                id="avatar"                                
                             >
                         </label>
                         <span
                             class="rd-avatar__cancel"
-                            data-toggle="rd-tooltip"
+                            data-action="cancel"
+                            data-toggle="tooltip"
                             title=""
                             data-original-title="Cancel avatar"
                         >

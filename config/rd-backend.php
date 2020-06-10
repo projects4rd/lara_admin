@@ -2,7 +2,7 @@
 
 return [
     'image' => [
-        'directory' => 'uploads/images',
+        'directory' => 'images',
         'file_dimension' => [
             'width' => 800,
             'height' => 400
@@ -12,8 +12,7 @@ return [
             'height' => 170
         ],
         'avatar_dimension' => [
-            'width' => 300,
-            'height' => 300
+            'fit' => 100,  // width and height
         ]
     ],
     'default_category_id' => 1,

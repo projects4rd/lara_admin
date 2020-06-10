@@ -50,147 +50,184 @@
                     Save
                 </button>
             </div>
-
         </div>
-
     </div>
 
-    <ul
-        class="nav nav-fill rd-nav"
-        role="tablist"
-    >
-        <li class="nav-item rd-nav-item">
-            <a
-                class="nav-link rd-link active"
-                data-toggle="tab"
-                href="#rd_create_user_tab_1"
-                role="tab"
-            >
-                <div class="rd-nav-body">
-                    <div class="rd-nav-number">
-                        1
-                    </div>
-                    <div class="rd-nav-label">
-                        <div class="rd-nav-label-title">
-                            Account
+    <div class="container rd-container">
+        <ul
+            class="nav nav-fill rd-nav"
+            role="tablist"
+        >
+            <li class="nav-item rd-nav-item">
+                <a
+                    class="nav-link rd-link active"
+                    data-toggle="tab"
+                    href="#rd_create_user_tab_1"
+                    role="tab"
+                >
+                    <div class="rd-nav-body">
+                        <div class="rd-nav-number">
+                            1
                         </div>
-                        <div class="rd-nav-label-desc">
-                            User's Acount Information
+                        <div class="rd-nav-label">
+                            <div class="rd-nav-label-title">
+                                Account
+                            </div>
+                            <div class="rd-nav-label-desc">
+                                User's Acount Information
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </li>
+                </a>
+            </li>
 
-        <li class="nav-item rd-nav-item">
-            <a
-                class="nav-link rd-link"
-                data-toggle="tab"
-                href="#rd_create_user_tab_2"
-                role="tab"
-            >
-                <div class="rd-nav-body">
-                    <div class="rd-nav-number">
-                        2
-                    </div>
-                    <div class="rd-nav-label">
-                        <div class="rd-nav-label-title">
-                            Contact
+            <li class="nav-item rd-nav-item">
+                <a
+                    class="nav-link rd-link"
+                    data-toggle="tab"
+                    href="#rd_create_user_tab_2"
+                    role="tab"
+                >
+                    <div class="rd-nav-body">
+                        <div class="rd-nav-number">
+                            2
                         </div>
-                        <div class="rd-nav-label-desc">
-                            User's Profile
+                        <div class="rd-nav-label">
+                            <div class="rd-nav-label-title">
+                                Contact
+                            </div>
+                            <div class="rd-nav-label-desc">
+                                User's Profile
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </li>
+                </a>
+            </li>
 
-        <li class="nav-item rd-nav-item">
-            <a
-                class="nav-link rd-link"
-                data-toggle="tab"
-                href="#rd_create_user_tab_3"
-                role="tab"
-            >
-                <div class="rd-nav-body">
-                    <div class="rd-nav-number">
-                        3
-                    </div>
-                    <div class="rd-nav-label">
-                        <div class="rd-nav-label-title">
-                            Address
+            <li class="nav-item rd-nav-item">
+                <a
+                    class="nav-link rd-link"
+                    data-toggle="tab"
+                    href="#rd_create_user_tab_3"
+                    role="tab"
+                >
+                    <div class="rd-nav-body">
+                        <div class="rd-nav-number">
+                            3
                         </div>
-                        <div class="rd-nav-label-desc">
-                            User's Shipping Address
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </li>
-
-        <li class="nav-item rd-nav-item">
-            <a
-                class="nav-link rd-link"
-                data-toggle="tab"
-                href="#rd_create_user_tab_4"
-                role="tab"
-            >
-                <div class="rd-nav-body">
-                    <div class="rd-nav-number">
-                        4
-                    </div>
-                    <div class="rd-nav-label">
-                        <div class="rd-nav-label-title">
-                            Permissions
-                        </div>
-                        <div class="rd-nav-label-desc">
-                            Give permissions on user level
+                        <div class="rd-nav-label">
+                            <div class="rd-nav-label-title">
+                                Address
+                            </div>
+                            <div class="rd-nav-label-desc">
+                                User's Shipping Address
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </li>
+                </a>
+            </li>
 
-        <li class="nav-item rd-nav-item">
-            <a
-                class="nav-link rd-link"
-                data-toggle="tab"
-                href="#rd_create_user_tab_5"
-                role="tab"
-            >
-                <div class="rd-nav-body">
-                    <div class="rd-nav-number">
-                        5
-                    </div>
-                    <div class="rd-nav-label">
-                        <div class="rd-nav-label-title">
-                            Settings
+            <li class="nav-item rd-nav-item">
+                <a
+                    class="nav-link rd-link"
+                    data-toggle="tab"
+                    href="#rd_create_user_tab_4"
+                    role="tab"
+                >
+                    <div class="rd-nav-body">
+                        <div class="rd-nav-number">
+                            4
                         </div>
-                        <div class="rd-nav-label-desc">
-                            User's Settings
+                        <div class="rd-nav-label">
+                            <div class="rd-nav-label-title">
+                                Permissions
+                            </div>
+                            <div class="rd-nav-label-desc">
+                                Give permissions on user level
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </li>
+                </a>
+            </li>
 
-    </ul>
+            <li class="nav-item rd-nav-item">
+                <a
+                    class="nav-link rd-link"
+                    data-toggle="tab"
+                    href="#rd_create_user_tab_5"
+                    role="tab"
+                >
+                    <div class="rd-nav-body">
+                        <div class="rd-nav-number">
+                            5
+                        </div>
+                        <div class="rd-nav-label">
+                            <div class="rd-nav-label-title">
+                                Settings
+                            </div>
+                            <div class="rd-nav-label-desc">
+                                User's Settings
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
 
-    <div class="row">
-        <div class="col-lg-12">
+        </ul>
 
-            <form
-                method="POST"
-                action="{{ route('users.store') }}"
-                id="rd-form"
-                enctype="multipart/form-data"
-                class="rd-form rd-form-label-right"
-            >
-                @csrf
-                @include('admin.user.form')
-            </form>
+        <div class="row">
+            <div class="col-lg-12">
 
+                <form
+                    method="POST"
+                    action="{{ route('users.store') }}"
+                    id="rd-form"
+                    enctype="multipart/form-data"
+                    class="rd-form rd-form-label-right"
+                >
+                    @csrf
+                    @include('admin.user.form')
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('page-script')
+<script type="application/javascript">
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    const 
+        avatar = document.querySelector('#avatar'),
+        avatarHolder = document.querySelector('.rd-avatar__holder'),
+        avatarCancel = document.querySelector('.rd-avatar__cancel');
+    
+    function showAvatar(input) {
+        
+        if (input.files && input.files[0]) {
+            
+            let reader = new FileReader();
+            
+            reader.onload = function (e) {
+                avatarHolder.setAttribute('style', 'background-image: url(' + e.target.result + ')');
+                avatarCancel.setAttribute('style', 'display: flex');
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    avatar.addEventListener("change", function(){
+        showAvatar(this);
+    });
+
+    avatarCancel.addEventListener("click", function() {
+        let defaultAvatar = avatarHolder.dataset.default;
+        avatarHolder.setAttribute('style', `background-image: url(${defaultAvatar})`);
+        avatarCancel.setAttribute('style', 'display: none');
+      });
+})
+</script>
+@endpush

@@ -5,6 +5,10 @@
   font-weight: 300;
 }
 
+.rd-container {
+  max-width: 1340px;
+}
+
 .rd-form {
   padding: 0 0 5rem;
   margin: auto;
@@ -148,8 +152,8 @@
 
 .btn.rd-btn-brand {
   color: #fff;
-  background-color: #5d78ff;
-  border-color: #5d78ff;
+  background-color: #3699ff;
+  border-color: #3699ff;
 }
 
 .btn.rd-btn-brand.btn.dropdown-toggle {
@@ -256,7 +260,7 @@
   height: 2.25rem;
   width: 2.25rem;
   background-color: rgba(93, 120, 255, 0.08);
-  color: #5d78ff;
+  color: #3699ff;
   margin-right: 1rem;
   border-radius: 0.5rem;
 }
@@ -270,7 +274,7 @@
 .rd-nav .rd-nav-item .rd-link .rd-nav-body .rd-nav-label .rd-nav-label-title {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #5d78ff;
+  color: #3699ff;
 }
 
 .rd-nav .rd-nav-item .rd-link .rd-nav-body .rd-nav-label .rd-nav-label-desc {
@@ -283,11 +287,11 @@
 
 .rd-nav .rd-nav-item .rd-link.active .rd-nav-body .rd-nav-number {
   color: #fff;
-  background-color: #5d78ff;
+  background-color: #3699ff;
 }
 
 .rd-nav .rd-nav-item .rd-link.active .rd-nav-body .rd-nav-label-title {
-  color: #5d78ff;
+  color: #3699ff;
 }
 
 .rd-avatar {
@@ -324,14 +328,14 @@
   transition: all 0.3s;
 }
 
-.rd-avatar .rd-avatar__upload .rd-avatar__upload i {
-  color: #5d78ff;
+.rd-avatar .rd-avatar__upload i {
+  color: #3699ff;
   font-size: 0.9rem;
 }
 
 .rd-avatar .rd-avatar__upload:hover {
   transition: all 0.3s;
-  background-color: #5d78ff;
+  background-color: #3699ff;
 }
 
 .rd-avatar .rd-avatar__upload:hover i {
@@ -351,14 +355,28 @@
   justify-content: center;
   position: absolute;
   top: auto;
-  right: -10px;
+  right: -5px;
   bottom: -5px;
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: #fff;
   box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
   display: none;
+}
+
+.rd-avatar .rd-avatar__cancel i {
+  color: #3699ff;
+  font-size: 0.9rem;
+}
+
+.rd-avatar .rd-avatar__cancel:hover {
+  transition: all 0.3s;
+  background-color: #3699ff;
+}
+
+.rd-avatar .rd-avatar__cancel:hover i {
+  color: #fff;
 }
 
 p {
@@ -513,11 +531,11 @@ a:focus {
 
 #content {
   width: calc(100% - 250px);
-  padding: 0 20px;
+  padding: 0;
   min-height: 100vh;
   transition: all 0.3s;
   position: absolute;
-  top: 5rem;
+  top: 4rem;
   right: 0;
   z-index: -1;
 }

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\UserStoreRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
@@ -100,8 +101,8 @@ class UserController extends Controller
 
         DB::beginTransaction();
         try {
-            $request->merge(['password' => Hash::make($request->input('password'))]);
-            $request->request->set('name', $request->input('first_name') . ' ' . $request->input('last_name'));
+            $request->merge(['password' => Hash::make(request('password'))]);
+            $request->request->set('name', request('first_name') . ' ' . request('last_name'));
 
             $user = User::create($request->except('roles', 'permissions'));
 
@@ -120,7 +121,7 @@ class UserController extends Controller
             $this->syncPermissionsAndRoles($request, $user);
 
             DB::commit();
-            return redirect()->route('users.index')->with('success', __('User has been created'));
+            return redirect()->route('users.index')->with('success', __('User has been created'))->withInput();
 
         } catch (Exception $e) {
             DB::rollback();
@@ -245,30 +246,23 @@ class UserController extends Controller
             return '';
         }
 
-        $image         = $request->file('avatar');
-        $timestamp     = time();
-        $extension     = $image->getClientOriginalExtension();
+        $image          = $request->file('avatar');
+        $timestamp      = time();
+        $extension      = $image->getClientOriginalExtension();
+        $hash           = md5($image->__toString());
 
-        $filename      = $timestamp . '.' . $extension;
-        $location      = public_path(config('rd-backend.image.directory') . '/' . $filename);
-        $fileWidth     = config('rd-backend.image.file_dimension.width');
-        $fileHeight    = config('rd-backend.image.file_dimension.height');
-
-        $thumbnail     = $timestamp . '_thumb.' . $extension;
-        $thumbLocation = public_path(config('rd-backend.image.directory') . '/' . $thumbnail);
-        $thumbWidth    = config('rd-backend.image.thumbnail_dimension.width');
-        $thumbHeight   = config('rd-backend.image.thumbnail_dimension.height');
+        $filename       = $hash . '.' . $extension;
+        $location       = storage_path(config('rd-backend.image.directory') . '/' . $filename);
+        $imageDimension = config('rd-backend.image.avatar_dimension.fit');
 
         try {
 
-            Image::make($image)->resize($fileWidth, $fileHeight)->save($location);
-            Image::make($image)->resize($thumbWidth, $thumbHeight)->save($thumbLocation);
+            $avatar = Image::make($image)->fit($imageDimension)->encode($extension);;
+            Storage::put("public/images/avatars/" . $filename, $avatar);
 
             return $filename;
 
         } catch(Exception $e){
-            // do task when error
-            echo $e->getMessage();
             throw new Exception($e->getMessage());
         }
 
