@@ -23,4 +23,14 @@ class Contact extends Model
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->attribute['first_name'] =  ucfirst($value);
+    }
+
+    public function setLastNameAttribute($value)
+    {
+        $this->attribute['last_name'] =  ucfirst($value);
+    }
 }
